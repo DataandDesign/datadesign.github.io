@@ -26,7 +26,7 @@ We will work with three different applications using Python.  First, we will use
 
 <div class="alert alert-primary" role="alert">
 
-**SECTION I: Data Analysis with Python**
+
 
 
 ---
@@ -45,35 +45,35 @@ Introduction to Python and Data II
 <div class="alert alert-info" role="alert">
 
 
-**SECTION II: Web Development with Python**
+
 
 
 ---
 
 - Class III: 9/5
 
-Introduction to Flask
+Introduction to Mapping
 
 - Class IV: 9/12
 
-Introduction to Flask II
+Introduction to Webscraping
     
 </div>
 
 <div class="alert alert-info" role="alert">
 
 
-**SECTION III: Visualization Dashboards with Dash**
+
 
 ---
 
 - Class V: 9/17
 
-Introduction to Dash I
+Introduction to NLP
 
 - Class VI: 9/24
 
-Introduction to Dash II
+Introduction to Flask and Dash
     
 ---
 
