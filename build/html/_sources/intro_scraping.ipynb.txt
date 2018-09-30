@@ -1,0 +1,2061 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Review\n",
+    "\n",
+    "- Examine data on customer churn \n",
+    "- Review `groupby` and basic plots\n",
+    "\n",
+    "---\n",
+    "\n",
+    "Use the data below, from a telecommunications company, to examine the groups in the **churn** column.  This is a `TRUE` or `FALSE` column, representing whether or not a company had retained the customer.  To start, we perform our usual exploration."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 165,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 166,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.read_csv('data/cell_phone_churn.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 167,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>state</th>\n",
+       "      <th>account_length</th>\n",
+       "      <th>area_code</th>\n",
+       "      <th>intl_plan</th>\n",
+       "      <th>vmail_plan</th>\n",
+       "      <th>vmail_message</th>\n",
+       "      <th>day_mins</th>\n",
+       "      <th>day_calls</th>\n",
+       "      <th>day_charge</th>\n",
+       "      <th>eve_mins</th>\n",
+       "      <th>eve_calls</th>\n",
+       "      <th>eve_charge</th>\n",
+       "      <th>night_mins</th>\n",
+       "      <th>night_calls</th>\n",
+       "      <th>night_charge</th>\n",
+       "      <th>intl_mins</th>\n",
+       "      <th>intl_calls</th>\n",
+       "      <th>intl_charge</th>\n",
+       "      <th>custserv_calls</th>\n",
+       "      <th>churn</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>KS</td>\n",
+       "      <td>128</td>\n",
+       "      <td>415</td>\n",
+       "      <td>no</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>25</td>\n",
+       "      <td>265.1</td>\n",
+       "      <td>110</td>\n",
+       "      <td>45.07</td>\n",
+       "      <td>197.4</td>\n",
+       "      <td>99</td>\n",
+       "      <td>16.78</td>\n",
+       "      <td>244.7</td>\n",
+       "      <td>91</td>\n",
+       "      <td>11.01</td>\n",
+       "      <td>10.0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2.70</td>\n",
+       "      <td>1</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>OH</td>\n",
+       "      <td>107</td>\n",
+       "      <td>415</td>\n",
+       "      <td>no</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>26</td>\n",
+       "      <td>161.6</td>\n",
+       "      <td>123</td>\n",
+       "      <td>27.47</td>\n",
+       "      <td>195.5</td>\n",
+       "      <td>103</td>\n",
+       "      <td>16.62</td>\n",
+       "      <td>254.4</td>\n",
+       "      <td>103</td>\n",
+       "      <td>11.45</td>\n",
+       "      <td>13.7</td>\n",
+       "      <td>3</td>\n",
+       "      <td>3.70</td>\n",
+       "      <td>1</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>NJ</td>\n",
+       "      <td>137</td>\n",
+       "      <td>415</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>0</td>\n",
+       "      <td>243.4</td>\n",
+       "      <td>114</td>\n",
+       "      <td>41.38</td>\n",
+       "      <td>121.2</td>\n",
+       "      <td>110</td>\n",
+       "      <td>10.30</td>\n",
+       "      <td>162.6</td>\n",
+       "      <td>104</td>\n",
+       "      <td>7.32</td>\n",
+       "      <td>12.2</td>\n",
+       "      <td>5</td>\n",
+       "      <td>3.29</td>\n",
+       "      <td>0</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>OH</td>\n",
+       "      <td>84</td>\n",
+       "      <td>408</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>0</td>\n",
+       "      <td>299.4</td>\n",
+       "      <td>71</td>\n",
+       "      <td>50.90</td>\n",
+       "      <td>61.9</td>\n",
+       "      <td>88</td>\n",
+       "      <td>5.26</td>\n",
+       "      <td>196.9</td>\n",
+       "      <td>89</td>\n",
+       "      <td>8.86</td>\n",
+       "      <td>6.6</td>\n",
+       "      <td>7</td>\n",
+       "      <td>1.78</td>\n",
+       "      <td>2</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>OK</td>\n",
+       "      <td>75</td>\n",
+       "      <td>415</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>0</td>\n",
+       "      <td>166.7</td>\n",
+       "      <td>113</td>\n",
+       "      <td>28.34</td>\n",
+       "      <td>148.3</td>\n",
+       "      <td>122</td>\n",
+       "      <td>12.61</td>\n",
+       "      <td>186.9</td>\n",
+       "      <td>121</td>\n",
+       "      <td>8.41</td>\n",
+       "      <td>10.1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>2.73</td>\n",
+       "      <td>3</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  state  account_length  area_code intl_plan vmail_plan  vmail_message  \\\n",
+       "0    KS             128        415        no        yes             25   \n",
+       "1    OH             107        415        no        yes             26   \n",
+       "2    NJ             137        415        no         no              0   \n",
+       "3    OH              84        408       yes         no              0   \n",
+       "4    OK              75        415       yes         no              0   \n",
+       "\n",
+       "   day_mins  day_calls  day_charge  eve_mins  eve_calls  eve_charge  \\\n",
+       "0     265.1        110       45.07     197.4         99       16.78   \n",
+       "1     161.6        123       27.47     195.5        103       16.62   \n",
+       "2     243.4        114       41.38     121.2        110       10.30   \n",
+       "3     299.4         71       50.90      61.9         88        5.26   \n",
+       "4     166.7        113       28.34     148.3        122       12.61   \n",
+       "\n",
+       "   night_mins  night_calls  night_charge  intl_mins  intl_calls  intl_charge  \\\n",
+       "0       244.7           91         11.01       10.0           3         2.70   \n",
+       "1       254.4          103         11.45       13.7           3         3.70   \n",
+       "2       162.6          104          7.32       12.2           5         3.29   \n",
+       "3       196.9           89          8.86        6.6           7         1.78   \n",
+       "4       186.9          121          8.41       10.1           3         2.73   \n",
+       "\n",
+       "   custserv_calls  churn  \n",
+       "0               1  False  \n",
+       "1               1  False  \n",
+       "2               0  False  \n",
+       "3               2  False  \n",
+       "4               3  False  "
+      ]
+     },
+     "execution_count": 167,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 168,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 3333 entries, 0 to 3332\n",
+      "Data columns (total 20 columns):\n",
+      "state             3333 non-null object\n",
+      "account_length    3333 non-null int64\n",
+      "area_code         3333 non-null int64\n",
+      "intl_plan         3333 non-null object\n",
+      "vmail_plan        3333 non-null object\n",
+      "vmail_message     3333 non-null int64\n",
+      "day_mins          3333 non-null float64\n",
+      "day_calls         3333 non-null int64\n",
+      "day_charge        3333 non-null float64\n",
+      "eve_mins          3333 non-null float64\n",
+      "eve_calls         3333 non-null int64\n",
+      "eve_charge        3333 non-null float64\n",
+      "night_mins        3333 non-null float64\n",
+      "night_calls       3333 non-null int64\n",
+      "night_charge      3333 non-null float64\n",
+      "intl_mins         3333 non-null float64\n",
+      "intl_calls        3333 non-null int64\n",
+      "intl_charge       3333 non-null float64\n",
+      "custserv_calls    3333 non-null int64\n",
+      "churn             3333 non-null bool\n",
+      "dtypes: bool(1), float64(8), int64(8), object(3)\n",
+      "memory usage: 498.1+ KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now, we can summarise the quantitative variables.  "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>account_length</th>\n",
+       "      <th>area_code</th>\n",
+       "      <th>vmail_message</th>\n",
+       "      <th>day_mins</th>\n",
+       "      <th>day_calls</th>\n",
+       "      <th>day_charge</th>\n",
+       "      <th>eve_mins</th>\n",
+       "      <th>eve_calls</th>\n",
+       "      <th>eve_charge</th>\n",
+       "      <th>night_mins</th>\n",
+       "      <th>night_calls</th>\n",
+       "      <th>night_charge</th>\n",
+       "      <th>intl_mins</th>\n",
+       "      <th>intl_calls</th>\n",
+       "      <th>intl_charge</th>\n",
+       "      <th>custserv_calls</th>\n",
+       "      <th>call_sum</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "      <td>3333.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>101.064806</td>\n",
+       "      <td>437.182418</td>\n",
+       "      <td>8.099010</td>\n",
+       "      <td>179.775098</td>\n",
+       "      <td>100.435644</td>\n",
+       "      <td>30.562307</td>\n",
+       "      <td>200.980348</td>\n",
+       "      <td>100.114311</td>\n",
+       "      <td>17.083540</td>\n",
+       "      <td>200.872037</td>\n",
+       "      <td>100.107711</td>\n",
+       "      <td>9.039325</td>\n",
+       "      <td>10.237294</td>\n",
+       "      <td>4.479448</td>\n",
+       "      <td>2.764581</td>\n",
+       "      <td>1.562856</td>\n",
+       "      <td>305.137114</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>39.822106</td>\n",
+       "      <td>42.371290</td>\n",
+       "      <td>13.688365</td>\n",
+       "      <td>54.467389</td>\n",
+       "      <td>20.069084</td>\n",
+       "      <td>9.259435</td>\n",
+       "      <td>50.713844</td>\n",
+       "      <td>19.922625</td>\n",
+       "      <td>4.310668</td>\n",
+       "      <td>50.573847</td>\n",
+       "      <td>19.568609</td>\n",
+       "      <td>2.275873</td>\n",
+       "      <td>2.791840</td>\n",
+       "      <td>2.461214</td>\n",
+       "      <td>0.753773</td>\n",
+       "      <td>1.315491</td>\n",
+       "      <td>34.448164</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>408.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>23.200000</td>\n",
+       "      <td>33.000000</td>\n",
+       "      <td>1.040000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>191.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>74.000000</td>\n",
+       "      <td>408.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>143.700000</td>\n",
+       "      <td>87.000000</td>\n",
+       "      <td>24.430000</td>\n",
+       "      <td>166.600000</td>\n",
+       "      <td>87.000000</td>\n",
+       "      <td>14.160000</td>\n",
+       "      <td>167.000000</td>\n",
+       "      <td>87.000000</td>\n",
+       "      <td>7.520000</td>\n",
+       "      <td>8.500000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>2.300000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>282.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>101.000000</td>\n",
+       "      <td>415.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>179.400000</td>\n",
+       "      <td>101.000000</td>\n",
+       "      <td>30.500000</td>\n",
+       "      <td>201.400000</td>\n",
+       "      <td>100.000000</td>\n",
+       "      <td>17.120000</td>\n",
+       "      <td>201.200000</td>\n",
+       "      <td>100.000000</td>\n",
+       "      <td>9.050000</td>\n",
+       "      <td>10.300000</td>\n",
+       "      <td>4.000000</td>\n",
+       "      <td>2.780000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>305.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>127.000000</td>\n",
+       "      <td>510.000000</td>\n",
+       "      <td>20.000000</td>\n",
+       "      <td>216.400000</td>\n",
+       "      <td>114.000000</td>\n",
+       "      <td>36.790000</td>\n",
+       "      <td>235.300000</td>\n",
+       "      <td>114.000000</td>\n",
+       "      <td>20.000000</td>\n",
+       "      <td>235.300000</td>\n",
+       "      <td>113.000000</td>\n",
+       "      <td>10.590000</td>\n",
+       "      <td>12.100000</td>\n",
+       "      <td>6.000000</td>\n",
+       "      <td>3.270000</td>\n",
+       "      <td>2.000000</td>\n",
+       "      <td>328.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>243.000000</td>\n",
+       "      <td>510.000000</td>\n",
+       "      <td>51.000000</td>\n",
+       "      <td>350.800000</td>\n",
+       "      <td>165.000000</td>\n",
+       "      <td>59.640000</td>\n",
+       "      <td>363.700000</td>\n",
+       "      <td>170.000000</td>\n",
+       "      <td>30.910000</td>\n",
+       "      <td>395.000000</td>\n",
+       "      <td>175.000000</td>\n",
+       "      <td>17.770000</td>\n",
+       "      <td>20.000000</td>\n",
+       "      <td>20.000000</td>\n",
+       "      <td>5.400000</td>\n",
+       "      <td>9.000000</td>\n",
+       "      <td>416.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       account_length    area_code  vmail_message     day_mins    day_calls  \\\n",
+       "count     3333.000000  3333.000000    3333.000000  3333.000000  3333.000000   \n",
+       "mean       101.064806   437.182418       8.099010   179.775098   100.435644   \n",
+       "std         39.822106    42.371290      13.688365    54.467389    20.069084   \n",
+       "min          1.000000   408.000000       0.000000     0.000000     0.000000   \n",
+       "25%         74.000000   408.000000       0.000000   143.700000    87.000000   \n",
+       "50%        101.000000   415.000000       0.000000   179.400000   101.000000   \n",
+       "75%        127.000000   510.000000      20.000000   216.400000   114.000000   \n",
+       "max        243.000000   510.000000      51.000000   350.800000   165.000000   \n",
+       "\n",
+       "        day_charge     eve_mins    eve_calls   eve_charge   night_mins  \\\n",
+       "count  3333.000000  3333.000000  3333.000000  3333.000000  3333.000000   \n",
+       "mean     30.562307   200.980348   100.114311    17.083540   200.872037   \n",
+       "std       9.259435    50.713844    19.922625     4.310668    50.573847   \n",
+       "min       0.000000     0.000000     0.000000     0.000000    23.200000   \n",
+       "25%      24.430000   166.600000    87.000000    14.160000   167.000000   \n",
+       "50%      30.500000   201.400000   100.000000    17.120000   201.200000   \n",
+       "75%      36.790000   235.300000   114.000000    20.000000   235.300000   \n",
+       "max      59.640000   363.700000   170.000000    30.910000   395.000000   \n",
+       "\n",
+       "       night_calls  night_charge    intl_mins   intl_calls  intl_charge  \\\n",
+       "count  3333.000000   3333.000000  3333.000000  3333.000000  3333.000000   \n",
+       "mean    100.107711      9.039325    10.237294     4.479448     2.764581   \n",
+       "std      19.568609      2.275873     2.791840     2.461214     0.753773   \n",
+       "min      33.000000      1.040000     0.000000     0.000000     0.000000   \n",
+       "25%      87.000000      7.520000     8.500000     3.000000     2.300000   \n",
+       "50%     100.000000      9.050000    10.300000     4.000000     2.780000   \n",
+       "75%     113.000000     10.590000    12.100000     6.000000     3.270000   \n",
+       "max     175.000000     17.770000    20.000000    20.000000     5.400000   \n",
+       "\n",
+       "       custserv_calls     call_sum  \n",
+       "count     3333.000000  3333.000000  \n",
+       "mean         1.562856   305.137114  \n",
+       "std          1.315491    34.448164  \n",
+       "min          0.000000   191.000000  \n",
+       "25%          1.000000   282.000000  \n",
+       "50%          1.000000   305.000000  \n",
+       "75%          2.000000   328.000000  \n",
+       "max          9.000000   416.000000  "
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## `countplot`\n",
+    "\n",
+    "Seaborn's countplot is quite handy here.  We can examine both the number churned and the the counts for customer service call.  Any discrete/finite count variable can be used here."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import seaborn as sns"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 169,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x120ddf198>"
+      ]
+     },
+     "execution_count": 169,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x120da6550>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "sns.countplot(df.churn)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 171,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.14491449144914492"
+      ]
+     },
+     "execution_count": 171,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.churn.mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 176,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x1045a8c88>"
+      ]
+     },
+     "execution_count": 176,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x1207a49b0>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "sns.countplot(df.custserv_calls)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 177,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>state</th>\n",
+       "      <th>account_length</th>\n",
+       "      <th>area_code</th>\n",
+       "      <th>intl_plan</th>\n",
+       "      <th>vmail_plan</th>\n",
+       "      <th>vmail_message</th>\n",
+       "      <th>day_mins</th>\n",
+       "      <th>day_calls</th>\n",
+       "      <th>day_charge</th>\n",
+       "      <th>eve_mins</th>\n",
+       "      <th>eve_calls</th>\n",
+       "      <th>eve_charge</th>\n",
+       "      <th>night_mins</th>\n",
+       "      <th>night_calls</th>\n",
+       "      <th>night_charge</th>\n",
+       "      <th>intl_mins</th>\n",
+       "      <th>intl_calls</th>\n",
+       "      <th>intl_charge</th>\n",
+       "      <th>custserv_calls</th>\n",
+       "      <th>churn</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>542</th>\n",
+       "      <td>MN</td>\n",
+       "      <td>152</td>\n",
+       "      <td>415</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>20</td>\n",
+       "      <td>237.5</td>\n",
+       "      <td>120</td>\n",
+       "      <td>40.38</td>\n",
+       "      <td>253.4</td>\n",
+       "      <td>94</td>\n",
+       "      <td>21.54</td>\n",
+       "      <td>265.2</td>\n",
+       "      <td>80</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>14.2</td>\n",
+       "      <td>3</td>\n",
+       "      <td>3.83</td>\n",
+       "      <td>9</td>\n",
+       "      <td>True</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2380</th>\n",
+       "      <td>NJ</td>\n",
+       "      <td>53</td>\n",
+       "      <td>408</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>0</td>\n",
+       "      <td>228.6</td>\n",
+       "      <td>117</td>\n",
+       "      <td>38.86</td>\n",
+       "      <td>132.8</td>\n",
+       "      <td>123</td>\n",
+       "      <td>11.29</td>\n",
+       "      <td>227.2</td>\n",
+       "      <td>124</td>\n",
+       "      <td>10.22</td>\n",
+       "      <td>10.1</td>\n",
+       "      <td>2</td>\n",
+       "      <td>2.73</td>\n",
+       "      <td>9</td>\n",
+       "      <td>True</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     state  account_length  area_code intl_plan vmail_plan  vmail_message  \\\n",
+       "542     MN             152        415       yes        yes             20   \n",
+       "2380    NJ              53        408        no         no              0   \n",
+       "\n",
+       "      day_mins  day_calls  day_charge  eve_mins  eve_calls  eve_charge  \\\n",
+       "542      237.5        120       40.38     253.4         94       21.54   \n",
+       "2380     228.6        117       38.86     132.8        123       11.29   \n",
+       "\n",
+       "      night_mins  night_calls  night_charge  intl_mins  intl_calls  \\\n",
+       "542        265.2           80         11.93       14.2           3   \n",
+       "2380       227.2          124         10.22       10.1           2   \n",
+       "\n",
+       "      intl_charge  custserv_calls  churn  \n",
+       "542          3.83               9   True  \n",
+       "2380         2.73               9   True  "
+      ]
+     },
+     "execution_count": 177,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df['custserv_calls'] == 9]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 179,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.6138613861386139"
+      ]
+     },
+     "execution_count": 179,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df['custserv_calls'] >= 5]['churn'].mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 180,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.13025990099009901"
+      ]
+     },
+     "execution_count": 180,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df['custserv_calls'] < 5]['churn'].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## `groupby`\n",
+    "\n",
+    "To look at relationships in chunks, we use our `.groupby` method.  First, we can see how many people were churned within the international plan categories."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 172,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "intl_plan  churn\n",
+       "no         False    2664\n",
+       "           True      346\n",
+       "yes        False     186\n",
+       "           True      137\n",
+       "Name: churn, dtype: int64"
+      ]
+     },
+     "execution_count": 172,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.groupby(['intl_plan', 'churn'])['churn'].count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "483"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.churn.sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(3333, 20)"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "state  custserv_calls\n",
+       "AK     0                 11\n",
+       "       1                 18\n",
+       "       2                 10\n",
+       "       3                 10\n",
+       "       4                  2\n",
+       "Name: churn, dtype: int64"
+      ]
+     },
+     "execution_count": 90,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.groupby(['state', 'custserv_calls'])['churn'].count().head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 91,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df['call_sum'] = df.day_calls + df.eve_calls + df.night_calls + df.intl_calls"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 92,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "count    3333.000000\n",
+       "mean      305.137114\n",
+       "std        34.448164\n",
+       "min       191.000000\n",
+       "25%       282.000000\n",
+       "50%       305.000000\n",
+       "75%       328.000000\n",
+       "max       416.000000\n",
+       "Name: call_sum, dtype: float64"
+      ]
+     },
+     "execution_count": 92,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['call_sum'].describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 93,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x12021f8d0>"
+      ]
+     },
+     "execution_count": 93,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x12020b828>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "sns.boxplot(df.call_sum)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 94,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x120134908>"
+      ]
+     },
+     "execution_count": 94,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x1201156d8>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "df.call_sum.hist()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%matplotlib inline\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x120b32f98>"
+      ]
+     },
+     "execution_count": 102,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAYkAAAELCAYAAAAspXpuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMS4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvNQv5yAAAIABJREFUeJzt3Xl8FfW9//HXJ3vYQkggQAIECAqIKIsL2lrXW7RYbKuWWiu37VWvrUvb29+t3uttbX/219veW+t6tWpbQapg1SpV1ItbXViD7PsBAgQQSAKBkJD1+/vjTCBgBpKQZM7yfj4e53Fm5nxn5vudmfP9nPnOnO+Ycw4REZHmJASdARERiVwKEiIi4ktBQkREfClIiIiILwUJERHxpSAhIiK+FCRERMSXgoSIiPhSkBAREV9JQWegNbKzs11+fn7Q2RARiRpLliwpcc71buv8URUk8vPzKSwsDDobIiJRw8y2nsr8am4SERFfChIiIuJLQUJERHwpSIiIiC8FCRER8aUgISIivhQkRETEV1T9T0LkZB555BFCoVAg696xYwcAubm5gay/oKCAO+64I5B1S+xSkJCYEgqFWLZqLfVdenX6uhMrywH4tLrzv1aJlWWdvk6JDwoSEnPqu/SiavhVnb7e9HVzAAJdt0h70zUJERHxpSAhIiK+FCRERMSXgoSIiPhSkBAREV8KEiIi4ktBQkREfClIiIiILwUJERHxpSAhIiK+FCRERMSXgoSIiPhSkBAREV8KEiIi4ktBQkREfClIiIiILwUJERHxpSDRgR555BEeeeSRoLMhIh0gXr7fenxpBwqFQkFnQUQ6SLx8v3UmISIivhQkRETEl4KEiIj4UpAQERFfChIiIuJLQUJERHwpSIiIiC8FCRER8aUgISIivhQkRETEl4KEiIj4UpAQERFfChIiIuJLQUJERHwpSIiIiK+4CBKlpaXceeedlJaWtsvyQqEQV111FTfffDOlpaXHjL/66qtcfPHFfOtb36K2trZd1icikau0tJSbb76ZK6+88jPPmPCre1pTJ7V3/dVacREkpk2bxsqVK5k+fXq7LO/++++nsrKSjRs3Mn369GPGH3zwQQC2b9/O7t2722V9IhK5pk2bxsaNG6mqquL+++//zGfN1T2tqZPau/5qrZgPEqWlpbz55ps453jz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\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x120a56a20>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "plt.subplot(2, 1, 1)\n",
+    "sns.boxplot(df.call_sum)\n",
+    "\n",
+    "plt.subplot(2, 1, 2)\n",
+    "sns.distplot(df.call_sum)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Webscraping Intro"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 181,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<h1>Heading</h1>\n",
+       "<p>This is a paragraph <strong>word!!</strong> </p>"
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "%%HTML\n",
+    "<h1>Heading</h1>\n",
+    "<p>This is a paragraph <strong>word!!</strong> </p>"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 104,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "url = 'https://www.yelp.com/search?find_desc=Falafel&find_loc=Upper+East+Side%2C+Manhattan%2C+NY&ns=1'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from bs4 import BeautifulSoup\n",
+    "import requests"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "response = requests.get(url)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<Response [200]>"
+      ]
+     },
+     "execution_count": 107,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "response"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 108,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'<!DOCTYPE HTML>\\n\\n<!--[if lt IE 7 ]> <html xmlns:fb=\"http://www.facebook.com/2008/fbml\" class=\"ie6 ie'"
+      ]
+     },
+     "execution_count": 108,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "response.text[:100]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 109,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "soup = BeautifulSoup(response.text, 'html.parser')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 110,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<span class=\"pseudo-input_text\">Find</span>"
+      ]
+     },
+     "execution_count": 110,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('span')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 111,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[<span class=\"pseudo-input_text\">Find</span>,\n",
+       " <span class=\"pseudo-input_field-holder\">\n",
+       " <input aria-autocomplete=\"list\" autocomplete=\"off\" class=\"main-search_field pseudo-input_field\" id=\"find_desc\" maxlength=\"64\" name=\"find_desc\" placeholder=\"tacos, cheap dinner, Max’s\" tabindex=\"1\" value=\"Falafel\">\n",
+       " </input></span>,\n",
+       " <span class=\"pseudo-input_text\">Near</span>,\n",
+       " <span class=\"main-search_field-holder pseudo-input_field-holder\">\n",
+       " <input aria-autocomplete=\"list\" autocomplete=\"off\" class=\"main-search_field pseudo-input_field\" data-query=\"Upper East Side, Manhattan, NY\" id=\"dropperText_Mast\" maxlength=\"80\" name=\"find_loc\" placeholder=\"address, neighborhood, city, state or zip\" tabindex=\"2\" value=\"Upper East Side, Manhattan, NY\">\n",
+       " <input name=\"ns\" type=\"hidden\" value=\"1\">\n",
+       " </input></input></span>,\n",
+       " <span class=\"main-search_action-icon-wrap js-search-icon-wrap\">\n",
+       " <span aria-hidden=\"true\" class=\"icon icon--24-search icon--size-24 icon--inverse icon--fallback-inverted\" style=\"width: 24px; height: 24px;\">\n",
+       " <svg class=\"icon_svg\" role=\"img\">\n",
+       " <use xlink:href=\"#24x24_search\"></use>\n",
+       " </svg>\n",
+       " </span>\n",
+       " <span class=\"u-offscreen\">Search</span>\n",
+       " </span>,\n",
+       " <span aria-hidden=\"true\" class=\"icon icon--24-search icon--size-24 icon--inverse icon--fallback-inverted\" style=\"width: 24px; height: 24px;\">\n",
+       " <svg class=\"icon_svg\" role=\"img\">\n",
+       " <use xlink:href=\"#24x24_search\"></use>\n",
+       " </svg>\n",
+       " </span>,\n",
+       " <span class=\"u-offscreen\">Search</span>,\n",
+       " <span aria-hidden=\"true\" class=\"icon icon--14-triangle-down icon--size-14 icon--inverse icon--fallback-inverted u-triangle-direction-down user-account_button-arrow responsive-visible-large-inline-block\" style=\"width: 14px; height: 14px;\">\n",
+       " <svg class=\"icon_svg\" role=\"img\">\n",
+       " <use xlink:href=\"#14x14_triangle_down\"></use>\n",
+       " </svg>\n",
+       " </span>,\n",
+       " <span aria-hidden=\"true\" class=\"icon icon--24-hamburger icon--size-24 icon--inverse icon--fallback-inverted drop-menu-link_open\" style=\"width: 24px; height: 24px;\">\n",
+       " <svg class=\"icon_svg\" role=\"img\">\n",
+       " <use xlink:href=\"#24x24_hamburger\"></use>\n",
+       " </svg>\n",
+       " </span>,\n",
+       " <span aria-hidden=\"true\" class=\"icon icon--24-close icon--size-24 icon--inverse icon--fallback-inverted drop-menu-link_close\" style=\"width: 24px; height: 24px;\">\n",
+       " <svg class=\"icon_svg\" role=\"img\">\n",
+       " <use xlink:href=\"#24x24_close\"></use>\n",
+       " </svg>\n",
+       " </span>]"
+      ]
+     },
+     "execution_count": 111,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find_all('span')[:10]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 112,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<a href=\"#header_find_form\" rel=\"nofollow\">\n",
+       "                        Skip to Search Form\n",
+       "                    </a>"
+      ]
+     },
+     "execution_count": 112,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('a')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<a class=\"biz-name js-analytics-click\" data-analytics-label=\"biz-name\" data-hovercard-id=\"-yguKRKYqeocrcHobtC9iw\" href=\"/adredir?ad_business_id=uuix2xNPXt4nX1w4ZCxMcA&amp;campaign_id=Vo0rlLLGT1TnhScLOV5z9Q&amp;click_origin=search_results&amp;placement=above_search&amp;redirect_url=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Fthe-halal-guys-teterboro-2&amp;request_id=ee4820a416864a17&amp;signature=0e67df043c3462fe2e565c7e8650fa23ceb883474afdeff8ce19d33a04d58d5e&amp;slot=0\" target=\"_blank\"><span>The Halal Guys</span></a>"
+      ]
+     },
+     "execution_count": 113,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('a', {'data-analytics-label': 'biz-name'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 114,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'The Halal Guys'"
+      ]
+     },
+     "execution_count": 114,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('a', {'data-analytics-label': 'biz-name'}).text"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "rests = soup.find_all('a', {'data-analytics-label': 'biz-name'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The Halal Guys\n",
+      "Hummus Kitchen\n",
+      "Effy’s Kitchen\n",
+      "Gyro96\n",
+      "Taim West Village\n",
+      "Greek Eats\n",
+      "Agora Turkish Restaurant\n",
+      "Casablanca Grill\n",
+      "Sumela Mediterranean Cafe & Grill\n",
+      "King of Falafel & Shawarma - Cart\n",
+      "The Chick Shop\n",
+      "One Lenox\n",
+      "Beyoglu\n",
+      "King of Falafel & Shawarma - Restaurant\n",
+      "Hummus Place\n",
+      "Omar’s Mediterranean East Midtown\n",
+      "Persepolis\n",
+      "Moshe’s Falafel\n",
+      "Sido Falafel & More\n",
+      "Pita Hot\n",
+      "King of Falafel & Shawarma - Truck\n",
+      "The Halal Guys\n",
+      "Grill 212\n",
+      "Saba’s Pizza\n",
+      "Big Boss Halal Food\n",
+      "Maoz Falafel & Grill\n",
+      "Nargila Grill\n",
+      "Taim Midtown\n",
+      "Duzan Mediterranean Grill\n",
+      "Azuri Cafe\n",
+      "Maoz Vegetarian\n"
+     ]
+    }
+   ],
+   "source": [
+    "for rest in rests:\n",
+    "    print(rest.text)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 127,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "ratings = soup.find_all('div', {'class': 'biz-rating'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 185,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'3.0 star rating'"
+      ]
+     },
+     "execution_count": 185,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('div', {'class': 'biz-rating'}).div.attrs['title']"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 138,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3.0 star rating\n",
+      "4.0 star rating\n",
+      "4.5 star rating\n",
+      "4.0 star rating\n",
+      "4.5 star rating\n",
+      "4.0 star rating\n",
+      "4.5 star rating\n",
+      "3.5 star rating\n",
+      "4.5 star rating\n",
+      "4.5 star rating\n",
+      "5.0 star rating\n",
+      "4.5 star rating\n",
+      "3.5 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n",
+      "4.5 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n",
+      "3.5 star rating\n",
+      "4.0 star rating\n",
+      "4.5 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n",
+      "3.5 star rating\n",
+      "4.5 star rating\n",
+      "4.0 star rating\n",
+      "3.5 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n",
+      "4.0 star rating\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in ratings:\n",
+    "    print(i.div.attrs['title'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 140,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'\\n                    “I order here all the time using Uber Eats. It is literally the Bomb.Com. We grew terribly tired of pizza and Chinese being the two main choices in town we decided to take the leap…”\\n                        read more\\n'"
+      ]
+     },
+     "execution_count": 140,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "soup.find('p', {'class': 'snippet'}).text"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 142,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "revs = soup.find_all('p', {'class': 'snippet'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 143,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "                    “I order here all the time using Uber Eats. It is literally the Bomb.Com. We grew terribly tired of pizza and Chinese being the two main choices in town we decided to take the leap…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “If this is your first time in Manhattan and craving Mediterranean food, you have to try this place. I ordered the trio- califlower, grape leaves, and falafel.…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “We had brunch here & the food was outstanding. We had a falafel wrap & an egg & potato wrap--both were delicious & very reasonably priced. This place is just…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “I had to stop coming here since the one guy was being rude. The food tastes great and this place has very good falafel balls. It's probably the best falafel…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “A Hole in the Wall kind of space with great, authentic Middle Eastern street food. Fast and fresh, the staff are always friendly and receptive. They only have…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Very authentic Greek food that's fresh and delicious. This is a great choice for a casual dinner. We tried the feta dip app, falafel, chicken gyro, lentil soup…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “My table had a variety of starters, Zucchini pancakes, Baba ganoush, Stuffed grape leaves and falafels. They were all delicious. My most fav. Was the baba…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “with falafel. Not sure how they get away with that! Otherwise it's pretty cheap. It's fine for a quick bite, just nothing mind blowing.”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “I love that this place is walking distance from my apartment so I can easily go anytime I want to. I tried some delicious Turkish wine which paired well with…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “I come here at least once a week for lunch and it's always worth it. The food is great (typically order the Ashley platter). Their falafel is delicious and…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “I'm always looking for some vegan options by my job rather than a plane old salad and I'm so happy I found this place. I got the Classic Falafel in a pita…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “was good, just didn't think it lived up to the hype. For our entrees I opted for Margarita flatbread and my bf had the lamb burger. For some reason, I thought…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Best Turkish/Mediterranean food on the UES IMO. Sidewalk seating is always popular and is certainly a scene on nice spring and fall evenings. The mezze platter…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Stopped in to King of Falafel, also known as \"YEAAHHH...BABY\", a few nights ago. I have heard good things about it and have passed it many times. Ordered: -…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Cute location! Service was great and we were immediately seated on a Monday night. Our food cake out within 5 minutes of ordering and was hot and fresh. We…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Walking all around NYC today... Stopped in here unexpectedly. Great find! Falafel pita and cuke/yogurt dip is delish. My friend got the chicken schawarma and…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “showed the waiter what we had looked at on the restaurant's website and he reluctantly allowed us to order it with the starter - falafel for me and tabuleh for…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Got the falafel sandwich and did not enjoy it one bit. Ended throwing the sandwich out halfway through. Lacked flavor just tasted like a fried hot sauce…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Really great, authentic middle eastern staples. Though the area is kind of posh (UWS) which likely drives the prices a little high it has a \"hole in the wall\"…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “The food here is tasty, fresh and inexpensive. The owner is a very gracious lady. My favorite is the Middle East Platter. It has different salads and falafel…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “One of the best halal food in NYC, clean truck and good quality of chicken. Plus you get a free falafel while you are waiting.”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Let me start that by saying that I am a sucker for Middle Eastern food. I will drive an hour to get a good falafel. A good gyro is heavenly. Unfortunately, the…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “We went to Grill 212 after reading some reviews online, I have to agree with the reviews the food is really amazing!! authentic falafel, I love the schnitzel…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Fantastic falafel sandwich. The pita is at once fluffy and robust, such that it can support a generous helping of falafel, tahini, and Israeli salad. The …”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “is thinking of bringing fish onto his menu and asked what i preferred... salmon?. YASSS PLEASEEE! I've been waiting foreverrr! I have passed by three times…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “UPDATE - FOOD POISONING. ----- Disinterested, shitty service Oily falafel and chicken schnitzel Salad bar offerings were lukewarm in temperature Tables and…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “The falafel platter I ordered for takeout was filled with hummus I could have consumed through a straw, if my stomach were strong enough to attempt such a…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “The falafel, the pita, the mint ice tea, the shug - everything was five stars! but why do you give a plastic straw with every order? not cool....”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Best Falafel in USA Parking is challenging Shawarmas are made perfect Enjoy desert next door at Bakhlava place”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “If you're looking for a hole-in-the-wall with authentic Israeli food, this is your spot. The falafel pita is a personal favorite. There are several tables but…”\n",
+      "                        read more\n",
+      "\n",
+      "\n",
+      "                    “Maoz Is one of my favorite places to eat when I am in the Union Square area. I love the salad bar where you can help yourself. Love the falafel balls which are…”\n",
+      "                        read more\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "for i in revs:\n",
+    "    print(i.text)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 144,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "name = []\n",
+    "rests = soup.find_all('a', {'data-analytics-label': 'biz-name'})\n",
+    "\n",
+    "for i in rests:\n",
+    "    name.append(i.text)\n",
+    " \n",
+    "stars = []\n",
+    "\n",
+    "ratings = soup.find_all('div', {'class': 'biz-rating'})\n",
+    "\n",
+    "for i in ratings:\n",
+    "    stars.append(i.div.attrs['title'])\n",
+    "\n",
+    "snip = []\n",
+    "revs = soup.find_all('p', {'class': 'snippet'})\n",
+    "for i in revs:\n",
+    "    snip.append(i.text)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 145,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.DataFrame({'name': name, 'stars': stars, 'rev_snip': snip})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 146,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>rev_snip</th>\n",
+       "      <th>stars</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>The Halal Guys</td>\n",
+       "      <td>\\n                    “I order here all the ti...</td>\n",
+       "      <td>3.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Hummus Kitchen</td>\n",
+       "      <td>\\n                    “If this is your first t...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Effy’s Kitchen</td>\n",
+       "      <td>\\n                    “We had brunch here &amp; th...</td>\n",
+       "      <td>4.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Gyro96</td>\n",
+       "      <td>\\n                    “I had to stop coming he...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Taim West Village</td>\n",
+       "      <td>\\n                    “A Hole in the Wall kind...</td>\n",
+       "      <td>4.5 star rating</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                name                                           rev_snip  \\\n",
+       "0     The Halal Guys  \\n                    “I order here all the ti...   \n",
+       "1     Hummus Kitchen  \\n                    “If this is your first t...   \n",
+       "2     Effy’s Kitchen  \\n                    “We had brunch here & th...   \n",
+       "3             Gyro96  \\n                    “I had to stop coming he...   \n",
+       "4  Taim West Village  \\n                    “A Hole in the Wall kind...   \n",
+       "\n",
+       "             stars  \n",
+       "0  3.0 star rating  \n",
+       "1  4.0 star rating  \n",
+       "2  4.5 star rating  \n",
+       "3  4.0 star rating  \n",
+       "4  4.5 star rating  "
+      ]
+     },
+     "execution_count": 146,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 157,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def yelp_scraper(url):\n",
+    "    resp = requests.get(url)\n",
+    "    soup = BeautifulSoup(resp.text, 'html.parser')\n",
+    "    \n",
+    "    name = []\n",
+    "    rests = soup.find_all('a', {'data-analytics-label': 'biz-name'})\n",
+    "\n",
+    "    for i in rests:\n",
+    "        name.append(i.text)\n",
+    "\n",
+    "    stars = []\n",
+    "\n",
+    "    ratings = soup.find_all('div', {'class': 'biz-rating'})\n",
+    "\n",
+    "    for i in ratings:\n",
+    "        stars.append(i.div.attrs['title'])\n",
+    "\n",
+    "    snip = []\n",
+    "    revs = soup.find_all('p', {'class': 'snippet'})\n",
+    "    for i in revs:\n",
+    "        snip.append(i.text)\n",
+    "        \n",
+    "    df = pd.DataFrame({'name': name, 'stars': stars, 'snip': snip})\n",
+    "    \n",
+    "    return df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 158,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>snip</th>\n",
+       "      <th>stars</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Yave Tequila</td>\n",
+       "      <td>\\n                    “YaVe Tequila is the fir...</td>\n",
+       "      <td>5.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>City Swiggers</td>\n",
+       "      <td>\\n                    “Found this spot while v...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>City Hops</td>\n",
+       "      <td>\\n                    “Great beer shop! Come h...</td>\n",
+       "      <td>4.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>The Jeffrey Craft Beer &amp; Bites</td>\n",
+       "      <td>\\n                    “They have an extensive ...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>The Pony Bar</td>\n",
+       "      <td>\\n                    “This place has a great ...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                             name  \\\n",
+       "0                    Yave Tequila   \n",
+       "1                   City Swiggers   \n",
+       "2                       City Hops   \n",
+       "3  The Jeffrey Craft Beer & Bites   \n",
+       "4                    The Pony Bar   \n",
+       "\n",
+       "                                                snip            stars  \n",
+       "0  \\n                    “YaVe Tequila is the fir...  5.0 star rating  \n",
+       "1  \\n                    “Found this spot while v...  4.0 star rating  \n",
+       "2  \\n                    “Great beer shop! Come h...  4.5 star rating  \n",
+       "3  \\n                    “They have an extensive ...  4.0 star rating  \n",
+       "4  \\n                    “This place has a great ...  4.0 star rating  "
+      ]
+     },
+     "execution_count": 158,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "yelp_scraper('https://www.yelp.com/search?find_desc=beer&find_loc=Upper+East+Side,+Manhattan,+NY')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 162,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>snip</th>\n",
+       "      <th>stars</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Sayori Japanese Restaurant</td>\n",
+       "      <td>\\n                    “I don't really write re...</td>\n",
+       "      <td>4.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>So Kong Dong</td>\n",
+       "      <td>\\n                    “cucumber, bean sprouts,...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>BCD Tofu House</td>\n",
+       "      <td>\\n                    “was quite quick. Find b...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Natural Tofu Restaurant</td>\n",
+       "      <td>\\n                    “Not every dish is amazi...</td>\n",
+       "      <td>3.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Tung Woo Co</td>\n",
+       "      <td>\\n                    “And if you don't know, ...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                         name  \\\n",
+       "0  Sayori Japanese Restaurant   \n",
+       "1                So Kong Dong   \n",
+       "2              BCD Tofu House   \n",
+       "3     Natural Tofu Restaurant   \n",
+       "4                 Tung Woo Co   \n",
+       "\n",
+       "                                                snip            stars  \n",
+       "0  \\n                    “I don't really write re...  4.5 star rating  \n",
+       "1  \\n                    “cucumber, bean sprouts,...  4.0 star rating  \n",
+       "2  \\n                    “was quite quick. Find b...  4.0 star rating  \n",
+       "3  \\n                    “Not every dish is amazi...  3.5 star rating  \n",
+       "4  \\n                    “And if you don't know, ...  4.0 star rating  "
+      ]
+     },
+     "execution_count": 162,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "yelp_scraper('https://www.yelp.com/search?find_desc=tofu&find_loc=Manhattan,+NY')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 164,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>snip</th>\n",
+       "      <th>stars</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Fusha Asian Cuisine</td>\n",
+       "      <td>\\n                    “Service was absolutely ...</td>\n",
+       "      <td>3.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Ninja New York</td>\n",
+       "      <td>\\n                    “You have to go through ...</td>\n",
+       "      <td>3.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Ninja Grill</td>\n",
+       "      <td>\\n                    “Came here for some lunc...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Ninja Sushi</td>\n",
+       "      <td>\\n                    “Had to review this plac...</td>\n",
+       "      <td>4.5 star rating</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Raku - It’s Japanese II</td>\n",
+       "      <td>\\n                    “and they deliver the ro...</td>\n",
+       "      <td>4.0 star rating</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                      name                                               snip  \\\n",
+       "0      Fusha Asian Cuisine  \\n                    “Service was absolutely ...   \n",
+       "1           Ninja New York  \\n                    “You have to go through ...   \n",
+       "2              Ninja Grill  \\n                    “Came here for some lunc...   \n",
+       "3              Ninja Sushi  \\n                    “Had to review this plac...   \n",
+       "4  Raku - It’s Japanese II  \\n                    “and they deliver the ro...   \n",
+       "\n",
+       "             stars  \n",
+       "0  3.5 star rating  \n",
+       "1  3.5 star rating  \n",
+       "2  4.0 star rating  \n",
+       "3  4.5 star rating  \n",
+       "4  4.0 star rating  "
+      ]
+     },
+     "execution_count": 164,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "yelp_scraper('https://www.yelp.com/search?find_desc=ninjas&find_loc=Manhattan,+NY')"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
