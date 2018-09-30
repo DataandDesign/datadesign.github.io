@@ -6,7 +6,7 @@ AUTHOR = 'Jacob Frias Koehler, PhD'
 SITENAME = 'Data and Design'
 SITEURL = ''
 
-THEME = 'pelican-themes/alchemy'
+#THEME = 'pelican-themes/alchemy'
 PATH = 'content'
 
 TIMEZONE = 'Europe/Paris'
