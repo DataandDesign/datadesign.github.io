@@ -1,0 +1,2143 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Review &#8212; Data and Design 0.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Are Punks Negative?" href="intro_nlp.html" />
+    <link rel="prev" title="Mapping Data with Folium" href="03-Folium.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Data and Design 0.0.2 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="03-Folium.html" title="Mapping Data with Folium"
+             accesskey="P">previous</a> |
+          <a href="intro_nlp.html" title="Are Punks Negative?"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="Review">
+<h1>Review<a class="headerlink" href="#Review" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Examine data on customer churn</li>
+<li>Review <code class="docutils literal"><span class="pre">groupby</span></code> and basic plots</li>
+</ul>
+<hr class="docutils" />
+<p>Use the data below, from a telecommunications company, to examine the
+groups in the <strong>churn</strong> column. This is a <code class="docutils literal"><span class="pre">TRUE</span></code> or <code class="docutils literal"><span class="pre">FALSE</span></code> column,
+representing whether or not a company had retained the customer. To
+start, we perform our usual exploration.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [165]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [166]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cell_phone_churn.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [167]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[167]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>account_length</th>
+      <th>area_code</th>
+      <th>intl_plan</th>
+      <th>vmail_plan</th>
+      <th>vmail_message</th>
+      <th>day_mins</th>
+      <th>day_calls</th>
+      <th>day_charge</th>
+      <th>eve_mins</th>
+      <th>eve_calls</th>
+      <th>eve_charge</th>
+      <th>night_mins</th>
+      <th>night_calls</th>
+      <th>night_charge</th>
+      <th>intl_mins</th>
+      <th>intl_calls</th>
+      <th>intl_charge</th>
+      <th>custserv_calls</th>
+      <th>churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KS</td>
+      <td>128</td>
+      <td>415</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>25</td>
+      <td>265.1</td>
+      <td>110</td>
+      <td>45.07</td>
+      <td>197.4</td>
+      <td>99</td>
+      <td>16.78</td>
+      <td>244.7</td>
+      <td>91</td>
+      <td>11.01</td>
+      <td>10.0</td>
+      <td>3</td>
+      <td>2.70</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>OH</td>
+      <td>107</td>
+      <td>415</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>26</td>
+      <td>161.6</td>
+      <td>123</td>
+      <td>27.47</td>
+      <td>195.5</td>
+      <td>103</td>
+      <td>16.62</td>
+      <td>254.4</td>
+      <td>103</td>
+      <td>11.45</td>
+      <td>13.7</td>
+      <td>3</td>
+      <td>3.70</td>
+      <td>1</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NJ</td>
+      <td>137</td>
+      <td>415</td>
+      <td>no</td>
+      <td>no</td>
+      <td>0</td>
+      <td>243.4</td>
+      <td>114</td>
+      <td>41.38</td>
+      <td>121.2</td>
+      <td>110</td>
+      <td>10.30</td>
+      <td>162.6</td>
+      <td>104</td>
+      <td>7.32</td>
+      <td>12.2</td>
+      <td>5</td>
+      <td>3.29</td>
+      <td>0</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>OH</td>
+      <td>84</td>
+      <td>408</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>0</td>
+      <td>299.4</td>
+      <td>71</td>
+      <td>50.90</td>
+      <td>61.9</td>
+      <td>88</td>
+      <td>5.26</td>
+      <td>196.9</td>
+      <td>89</td>
+      <td>8.86</td>
+      <td>6.6</td>
+      <td>7</td>
+      <td>1.78</td>
+      <td>2</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>OK</td>
+      <td>75</td>
+      <td>415</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>0</td>
+      <td>166.7</td>
+      <td>113</td>
+      <td>28.34</td>
+      <td>148.3</td>
+      <td>122</td>
+      <td>12.61</td>
+      <td>186.9</td>
+      <td>121</td>
+      <td>8.41</td>
+      <td>10.1</td>
+      <td>3</td>
+      <td>2.73</td>
+      <td>3</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [168]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 3333 entries, 0 to 3332
+Data columns (total 20 columns):
+state             3333 non-null object
+account_length    3333 non-null int64
+area_code         3333 non-null int64
+intl_plan         3333 non-null object
+vmail_plan        3333 non-null object
+vmail_message     3333 non-null int64
+day_mins          3333 non-null float64
+day_calls         3333 non-null int64
+day_charge        3333 non-null float64
+eve_mins          3333 non-null float64
+eve_calls         3333 non-null int64
+eve_charge        3333 non-null float64
+night_mins        3333 non-null float64
+night_calls       3333 non-null int64
+night_charge      3333 non-null float64
+intl_mins         3333 non-null float64
+intl_calls        3333 non-null int64
+intl_charge       3333 non-null float64
+custserv_calls    3333 non-null int64
+churn             3333 non-null bool
+dtypes: bool(1), float64(8), int64(8), object(3)
+memory usage: 498.1+ KB
+</pre></div></div>
+</div>
+<p>Now, we can summarise the quantitative variables.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[62]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>account_length</th>
+      <th>area_code</th>
+      <th>vmail_message</th>
+      <th>day_mins</th>
+      <th>day_calls</th>
+      <th>day_charge</th>
+      <th>eve_mins</th>
+      <th>eve_calls</th>
+      <th>eve_charge</th>
+      <th>night_mins</th>
+      <th>night_calls</th>
+      <th>night_charge</th>
+      <th>intl_mins</th>
+      <th>intl_calls</th>
+      <th>intl_charge</th>
+      <th>custserv_calls</th>
+      <th>call_sum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+      <td>3333.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>101.064806</td>
+      <td>437.182418</td>
+      <td>8.099010</td>
+      <td>179.775098</td>
+      <td>100.435644</td>
+      <td>30.562307</td>
+      <td>200.980348</td>
+      <td>100.114311</td>
+      <td>17.083540</td>
+      <td>200.872037</td>
+      <td>100.107711</td>
+      <td>9.039325</td>
+      <td>10.237294</td>
+      <td>4.479448</td>
+      <td>2.764581</td>
+      <td>1.562856</td>
+      <td>305.137114</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>39.822106</td>
+      <td>42.371290</td>
+      <td>13.688365</td>
+      <td>54.467389</td>
+      <td>20.069084</td>
+      <td>9.259435</td>
+      <td>50.713844</td>
+      <td>19.922625</td>
+      <td>4.310668</td>
+      <td>50.573847</td>
+      <td>19.568609</td>
+      <td>2.275873</td>
+      <td>2.791840</td>
+      <td>2.461214</td>
+      <td>0.753773</td>
+      <td>1.315491</td>
+      <td>34.448164</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>408.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>23.200000</td>
+      <td>33.000000</td>
+      <td>1.040000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>191.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>74.000000</td>
+      <td>408.000000</td>
+      <td>0.000000</td>
+      <td>143.700000</td>
+      <td>87.000000</td>
+      <td>24.430000</td>
+      <td>166.600000</td>
+      <td>87.000000</td>
+      <td>14.160000</td>
+      <td>167.000000</td>
+      <td>87.000000</td>
+      <td>7.520000</td>
+      <td>8.500000</td>
+      <td>3.000000</td>
+      <td>2.300000</td>
+      <td>1.000000</td>
+      <td>282.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>101.000000</td>
+      <td>415.000000</td>
+      <td>0.000000</td>
+      <td>179.400000</td>
+      <td>101.000000</td>
+      <td>30.500000</td>
+      <td>201.400000</td>
+      <td>100.000000</td>
+      <td>17.120000</td>
+      <td>201.200000</td>
+      <td>100.000000</td>
+      <td>9.050000</td>
+      <td>10.300000</td>
+      <td>4.000000</td>
+      <td>2.780000</td>
+      <td>1.000000</td>
+      <td>305.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>127.000000</td>
+      <td>510.000000</td>
+      <td>20.000000</td>
+      <td>216.400000</td>
+      <td>114.000000</td>
+      <td>36.790000</td>
+      <td>235.300000</td>
+      <td>114.000000</td>
+      <td>20.000000</td>
+      <td>235.300000</td>
+      <td>113.000000</td>
+      <td>10.590000</td>
+      <td>12.100000</td>
+      <td>6.000000</td>
+      <td>3.270000</td>
+      <td>2.000000</td>
+      <td>328.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>243.000000</td>
+      <td>510.000000</td>
+      <td>51.000000</td>
+      <td>350.800000</td>
+      <td>165.000000</td>
+      <td>59.640000</td>
+      <td>363.700000</td>
+      <td>170.000000</td>
+      <td>30.910000</td>
+      <td>395.000000</td>
+      <td>175.000000</td>
+      <td>17.770000</td>
+      <td>20.000000</td>
+      <td>20.000000</td>
+      <td>5.400000</td>
+      <td>9.000000</td>
+      <td>416.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="countplot">
+<h2><code class="docutils literal"><span class="pre">countplot</span></code><a class="headerlink" href="#countplot" title="Permalink to this headline">¶</a></h2>
+<p>Seaborn’s countplot is quite handy here. We can examine both the number
+churned and the the counts for customer service call. Any
+discrete/finite count variable can be used here.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [169]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">churn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[169]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x120ddf198&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_scraping_9_1.png" src="_images/intro_scraping_9_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [171]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">churn</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[171]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.14491449144914492
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [176]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">custserv_calls</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[176]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1045a8c88&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_scraping_11_1.png" src="_images/intro_scraping_11_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [177]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;custserv_calls&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[177]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>account_length</th>
+      <th>area_code</th>
+      <th>intl_plan</th>
+      <th>vmail_plan</th>
+      <th>vmail_message</th>
+      <th>day_mins</th>
+      <th>day_calls</th>
+      <th>day_charge</th>
+      <th>eve_mins</th>
+      <th>eve_calls</th>
+      <th>eve_charge</th>
+      <th>night_mins</th>
+      <th>night_calls</th>
+      <th>night_charge</th>
+      <th>intl_mins</th>
+      <th>intl_calls</th>
+      <th>intl_charge</th>
+      <th>custserv_calls</th>
+      <th>churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>542</th>
+      <td>MN</td>
+      <td>152</td>
+      <td>415</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>20</td>
+      <td>237.5</td>
+      <td>120</td>
+      <td>40.38</td>
+      <td>253.4</td>
+      <td>94</td>
+      <td>21.54</td>
+      <td>265.2</td>
+      <td>80</td>
+      <td>11.93</td>
+      <td>14.2</td>
+      <td>3</td>
+      <td>3.83</td>
+      <td>9</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2380</th>
+      <td>NJ</td>
+      <td>53</td>
+      <td>408</td>
+      <td>no</td>
+      <td>no</td>
+      <td>0</td>
+      <td>228.6</td>
+      <td>117</td>
+      <td>38.86</td>
+      <td>132.8</td>
+      <td>123</td>
+      <td>11.29</td>
+      <td>227.2</td>
+      <td>124</td>
+      <td>10.22</td>
+      <td>10.1</td>
+      <td>2</td>
+      <td>2.73</td>
+      <td>9</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [179]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;custserv_calls&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">][</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[179]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.6138613861386139
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [180]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;custserv_calls&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">][</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[180]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.13025990099009901
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="groupby">
+<h2><code class="docutils literal"><span class="pre">groupby</span></code><a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h2>
+<p>To look at relationships in chunks, we use our <code class="docutils literal"><span class="pre">.groupby</span></code> method.
+First, we can see how many people were churned within the international
+plan categories.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [172]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;intl_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;churn&#39;</span><span class="p">])[</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[172]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>intl_plan  churn
+no         False    2664
+           True      346
+yes        False     186
+           True      137
+Name: churn, dtype: int64
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">churn</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>483
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>(3333, 20)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;custserv_calls&#39;</span><span class="p">])[</span><span class="s1">&#39;churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[90]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>state  custserv_calls
+AK     0                 11
+       1                 18
+       2                 10
+       3                 10
+       4                  2
+Name: churn, dtype: int64
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [91]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;call_sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">day_calls</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">eve_calls</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">night_calls</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">intl_calls</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;call_sum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[92]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>count    3333.000000
+mean      305.137114
+std        34.448164
+min       191.000000
+25%       282.000000
+50%       305.000000
+75%       328.000000
+max       416.000000
+Name: call_sum, dtype: float64
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [93]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">call_sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[93]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12021f8d0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_scraping_22_1.png" src="_images/intro_scraping_22_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [94]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">call_sum</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[94]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x120134908&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_scraping_23_1.png" src="_images/intro_scraping_23_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [102]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">call_sum</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">call_sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[102]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x120b32f98&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_scraping_25_1.png" src="_images/intro_scraping_25_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Webscraping-Intro">
+<h1>Webscraping Intro<a class="headerlink" href="#Webscraping-Intro" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [181]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">HTML</span>
+&lt;h1&gt;Heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph &lt;strong&gt;word!!&lt;/strong&gt; &lt;/p&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<h1>Heading</h1>
+<p>This is a paragraph <strong>word!!</strong> </p></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [104]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.yelp.com/search?find_desc=Falafel&amp;find_loc=Upper+East+Side%2C+Manhattan%2C+NY&amp;ns=1&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [105]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [106]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [107]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[107]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;Response [200]&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [108]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[108]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;&lt;!DOCTYPE HTML&gt;\n\n&lt;!--[if lt IE 7 ]&gt; &lt;html xmlns:fb=&quot;http://www.facebook.com/2008/fbml&quot; class=&quot;ie6 ie&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [109]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [110]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[110]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;span class=&quot;pseudo-input_text&quot;&gt;Find&lt;/span&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [111]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[111]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&lt;span class=&quot;pseudo-input_text&quot;&gt;Find&lt;/span&gt;,
+ &lt;span class=&quot;pseudo-input_field-holder&quot;&gt;
+ &lt;input aria-autocomplete=&quot;list&quot; autocomplete=&quot;off&quot; class=&quot;main-search_field pseudo-input_field&quot; id=&quot;find_desc&quot; maxlength=&quot;64&quot; name=&quot;find_desc&quot; placeholder=&quot;tacos, cheap dinner, Max’s&quot; tabindex=&quot;1&quot; value=&quot;Falafel&quot;&gt;
+ &lt;/input&gt;&lt;/span&gt;,
+ &lt;span class=&quot;pseudo-input_text&quot;&gt;Near&lt;/span&gt;,
+ &lt;span class=&quot;main-search_field-holder pseudo-input_field-holder&quot;&gt;
+ &lt;input aria-autocomplete=&quot;list&quot; autocomplete=&quot;off&quot; class=&quot;main-search_field pseudo-input_field&quot; data-query=&quot;Upper East Side, Manhattan, NY&quot; id=&quot;dropperText_Mast&quot; maxlength=&quot;80&quot; name=&quot;find_loc&quot; placeholder=&quot;address, neighborhood, city, state or zip&quot; tabindex=&quot;2&quot; value=&quot;Upper East Side, Manhattan, NY&quot;&gt;
+ &lt;input name=&quot;ns&quot; type=&quot;hidden&quot; value=&quot;1&quot;&gt;
+ &lt;/input&gt;&lt;/input&gt;&lt;/span&gt;,
+ &lt;span class=&quot;main-search_action-icon-wrap js-search-icon-wrap&quot;&gt;
+ &lt;span aria-hidden=&quot;true&quot; class=&quot;icon icon--24-search icon--size-24 icon--inverse icon--fallback-inverted&quot; style=&quot;width: 24px; height: 24px;&quot;&gt;
+ &lt;svg class=&quot;icon_svg&quot; role=&quot;img&quot;&gt;
+ &lt;use xlink:href=&quot;#24x24_search&quot;&gt;&lt;/use&gt;
+ &lt;/svg&gt;
+ &lt;/span&gt;
+ &lt;span class=&quot;u-offscreen&quot;&gt;Search&lt;/span&gt;
+ &lt;/span&gt;,
+ &lt;span aria-hidden=&quot;true&quot; class=&quot;icon icon--24-search icon--size-24 icon--inverse icon--fallback-inverted&quot; style=&quot;width: 24px; height: 24px;&quot;&gt;
+ &lt;svg class=&quot;icon_svg&quot; role=&quot;img&quot;&gt;
+ &lt;use xlink:href=&quot;#24x24_search&quot;&gt;&lt;/use&gt;
+ &lt;/svg&gt;
+ &lt;/span&gt;,
+ &lt;span class=&quot;u-offscreen&quot;&gt;Search&lt;/span&gt;,
+ &lt;span aria-hidden=&quot;true&quot; class=&quot;icon icon--14-triangle-down icon--size-14 icon--inverse icon--fallback-inverted u-triangle-direction-down user-account_button-arrow responsive-visible-large-inline-block&quot; style=&quot;width: 14px; height: 14px;&quot;&gt;
+ &lt;svg class=&quot;icon_svg&quot; role=&quot;img&quot;&gt;
+ &lt;use xlink:href=&quot;#14x14_triangle_down&quot;&gt;&lt;/use&gt;
+ &lt;/svg&gt;
+ &lt;/span&gt;,
+ &lt;span aria-hidden=&quot;true&quot; class=&quot;icon icon--24-hamburger icon--size-24 icon--inverse icon--fallback-inverted drop-menu-link_open&quot; style=&quot;width: 24px; height: 24px;&quot;&gt;
+ &lt;svg class=&quot;icon_svg&quot; role=&quot;img&quot;&gt;
+ &lt;use xlink:href=&quot;#24x24_hamburger&quot;&gt;&lt;/use&gt;
+ &lt;/svg&gt;
+ &lt;/span&gt;,
+ &lt;span aria-hidden=&quot;true&quot; class=&quot;icon icon--24-close icon--size-24 icon--inverse icon--fallback-inverted drop-menu-link_close&quot; style=&quot;width: 24px; height: 24px;&quot;&gt;
+ &lt;svg class=&quot;icon_svg&quot; role=&quot;img&quot;&gt;
+ &lt;use xlink:href=&quot;#24x24_close&quot;&gt;&lt;/use&gt;
+ &lt;/svg&gt;
+ &lt;/span&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [112]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[112]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;a href=&quot;#header_find_form&quot; rel=&quot;nofollow&quot;&gt;
+                        Skip to Search Form
+                    &lt;/a&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [113]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-analytics-label&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-name&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[113]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;a class=&quot;biz-name js-analytics-click&quot; data-analytics-label=&quot;biz-name&quot; data-hovercard-id=&quot;-yguKRKYqeocrcHobtC9iw&quot; href=&quot;/adredir?ad_business_id=uuix2xNPXt4nX1w4ZCxMcA&amp;amp;campaign_id=Vo0rlLLGT1TnhScLOV5z9Q&amp;amp;click_origin=search_results&amp;amp;placement=above_search&amp;amp;redirect_url=https%3A%2F%2Fwww.yelp.com%2Fbiz%2Fthe-halal-guys-teterboro-2&amp;amp;request_id=ee4820a416864a17&amp;amp;signature=0e67df043c3462fe2e565c7e8650fa23ceb883474afdeff8ce19d33a04d58d5e&amp;amp;slot=0&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;The Halal Guys&lt;/span&gt;&lt;/a&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [114]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-analytics-label&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-name&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[114]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;The Halal Guys&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [115]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">rests</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-analytics-label&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-name&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [116]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">rest</span> <span class="ow">in</span> <span class="n">rests</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rest</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The Halal Guys
+Hummus Kitchen
+Effy’s Kitchen
+Gyro96
+Taim West Village
+Greek Eats
+Agora Turkish Restaurant
+Casablanca Grill
+Sumela Mediterranean Cafe &amp; Grill
+King of Falafel &amp; Shawarma - Cart
+The Chick Shop
+One Lenox
+Beyoglu
+King of Falafel &amp; Shawarma - Restaurant
+Hummus Place
+Omar’s Mediterranean East Midtown
+Persepolis
+Moshe’s Falafel
+Sido Falafel &amp; More
+Pita Hot
+King of Falafel &amp; Shawarma - Truck
+The Halal Guys
+Grill 212
+Saba’s Pizza
+Big Boss Halal Food
+Maoz Falafel &amp; Grill
+Nargila Grill
+Taim Midtown
+Duzan Mediterranean Grill
+Azuri Cafe
+Maoz Vegetarian
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [127]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">ratings</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-rating&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [185]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-rating&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[185]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;3.0 star rating&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [138]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ratings</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.0 star rating
+4.0 star rating
+4.5 star rating
+4.0 star rating
+4.5 star rating
+4.0 star rating
+4.5 star rating
+3.5 star rating
+4.5 star rating
+4.5 star rating
+5.0 star rating
+4.5 star rating
+3.5 star rating
+4.0 star rating
+4.0 star rating
+4.5 star rating
+4.0 star rating
+4.0 star rating
+3.5 star rating
+4.0 star rating
+4.5 star rating
+4.0 star rating
+4.0 star rating
+3.5 star rating
+4.5 star rating
+4.0 star rating
+3.5 star rating
+4.0 star rating
+4.0 star rating
+4.0 star rating
+4.0 star rating
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [140]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;snippet&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[140]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;\n                    “I order here all the time using Uber Eats. It is literally the Bomb.Com. We grew terribly tired of pizza and Chinese being the two main choices in town we decided to take the leap…”\n                        read more\n&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [142]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">revs</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;snippet&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [143]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">revs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+                    “I order here all the time using Uber Eats. It is literally the Bomb.Com. We grew terribly tired of pizza and Chinese being the two main choices in town we decided to take the leap…”
+                        read more
+
+
+                    “If this is your first time in Manhattan and craving Mediterranean food, you have to try this place. I ordered the trio- califlower, grape leaves, and falafel.…”
+                        read more
+
+
+                    “We had brunch here &amp; the food was outstanding. We had a falafel wrap &amp; an egg &amp; potato wrap--both were delicious &amp; very reasonably priced. This place is just…”
+                        read more
+
+
+                    “I had to stop coming here since the one guy was being rude. The food tastes great and this place has very good falafel balls. It&#39;s probably the best falafel…”
+                        read more
+
+
+                    “A Hole in the Wall kind of space with great, authentic Middle Eastern street food. Fast and fresh, the staff are always friendly and receptive. They only have…”
+                        read more
+
+
+                    “Very authentic Greek food that&#39;s fresh and delicious. This is a great choice for a casual dinner. We tried the feta dip app, falafel, chicken gyro, lentil soup…”
+                        read more
+
+
+                    “My table had a variety of starters, Zucchini pancakes, Baba ganoush, Stuffed grape leaves and falafels. They were all delicious. My most fav. Was the baba…”
+                        read more
+
+
+                    “with falafel. Not sure how they get away with that! Otherwise it&#39;s pretty cheap. It&#39;s fine for a quick bite, just nothing mind blowing.”
+                        read more
+
+
+                    “I love that this place is walking distance from my apartment so I can easily go anytime I want to. I tried some delicious Turkish wine which paired well with…”
+                        read more
+
+
+                    “I come here at least once a week for lunch and it&#39;s always worth it. The food is great (typically order the Ashley platter). Their falafel is delicious and…”
+                        read more
+
+
+                    “I&#39;m always looking for some vegan options by my job rather than a plane old salad and I&#39;m so happy I found this place. I got the Classic Falafel in a pita…”
+                        read more
+
+
+                    “was good, just didn&#39;t think it lived up to the hype. For our entrees I opted for Margarita flatbread and my bf had the lamb burger. For some reason, I thought…”
+                        read more
+
+
+                    “Best Turkish/Mediterranean food on the UES IMO. Sidewalk seating is always popular and is certainly a scene on nice spring and fall evenings. The mezze platter…”
+                        read more
+
+
+                    “Stopped in to King of Falafel, also known as &#34;YEAAHHH...BABY&#34;, a few nights ago. I have heard good things about it and have passed it many times. Ordered: -…”
+                        read more
+
+
+                    “Cute location! Service was great and we were immediately seated on a Monday night. Our food cake out within 5 minutes of ordering and was hot and fresh. We…”
+                        read more
+
+
+                    “Walking all around NYC today... Stopped in here unexpectedly. Great find! Falafel pita and cuke/yogurt dip is delish. My friend got the chicken schawarma and…”
+                        read more
+
+
+                    “showed the waiter what we had looked at on the restaurant&#39;s website and he reluctantly allowed us to order it with the starter - falafel for me and tabuleh for…”
+                        read more
+
+
+                    “Got the falafel sandwich and did not enjoy it one bit. Ended throwing the sandwich out halfway through. Lacked flavor just tasted like a fried hot sauce…”
+                        read more
+
+
+                    “Really great, authentic middle eastern staples. Though the area is kind of posh (UWS) which likely drives the prices a little high it has a &#34;hole in the wall&#34;…”
+                        read more
+
+
+                    “The food here is tasty, fresh and inexpensive. The owner is a very gracious lady. My favorite is the Middle East Platter. It has different salads and falafel…”
+                        read more
+
+
+                    “One of the best halal food in NYC, clean truck and good quality of chicken. Plus you get a free falafel while you are waiting.”
+                        read more
+
+
+                    “Let me start that by saying that I am a sucker for Middle Eastern food. I will drive an hour to get a good falafel. A good gyro is heavenly. Unfortunately, the…”
+                        read more
+
+
+                    “We went to Grill 212 after reading some reviews online, I have to agree with the reviews the food is really amazing!! authentic falafel, I love the schnitzel…”
+                        read more
+
+
+                    “Fantastic falafel sandwich. The pita is at once fluffy and robust, such that it can support a generous helping of falafel, tahini, and Israeli salad. The …”
+                        read more
+
+
+                    “is thinking of bringing fish onto his menu and asked what i preferred... salmon?. YASSS PLEASEEE! I&#39;ve been waiting foreverrr! I have passed by three times…”
+                        read more
+
+
+                    “UPDATE - FOOD POISONING. ----- Disinterested, shitty service Oily falafel and chicken schnitzel Salad bar offerings were lukewarm in temperature Tables and…”
+                        read more
+
+
+                    “The falafel platter I ordered for takeout was filled with hummus I could have consumed through a straw, if my stomach were strong enough to attempt such a…”
+                        read more
+
+
+                    “The falafel, the pita, the mint ice tea, the shug - everything was five stars! but why do you give a plastic straw with every order? not cool....”
+                        read more
+
+
+                    “Best Falafel in USA Parking is challenging Shawarmas are made perfect Enjoy desert next door at Bakhlava place”
+                        read more
+
+
+                    “If you&#39;re looking for a hole-in-the-wall with authentic Israeli food, this is your spot. The falafel pita is a personal favorite. There are several tables but…”
+                        read more
+
+
+                    “Maoz Is one of my favorite places to eat when I am in the Union Square area. I love the salad bar where you can help yourself. Love the falafel balls which are…”
+                        read more
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [144]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">name</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rests</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-analytics-label&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-name&#39;</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rests</span><span class="p">:</span>
+    <span class="n">name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">stars</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">ratings</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-rating&#39;</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ratings</span><span class="p">:</span>
+    <span class="n">stars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+
+<span class="n">snip</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">revs</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;snippet&#39;</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">revs</span><span class="p">:</span>
+    <span class="n">snip</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [145]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;stars&#39;</span><span class="p">:</span> <span class="n">stars</span><span class="p">,</span> <span class="s1">&#39;rev_snip&#39;</span><span class="p">:</span> <span class="n">snip</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [146]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[146]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>rev_snip</th>
+      <th>stars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Halal Guys</td>
+      <td>\n                    “I order here all the ti...</td>
+      <td>3.0 star rating</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Hummus Kitchen</td>
+      <td>\n                    “If this is your first t...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Effy’s Kitchen</td>
+      <td>\n                    “We had brunch here &amp; th...</td>
+      <td>4.5 star rating</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Gyro96</td>
+      <td>\n                    “I had to stop coming he...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Taim West Village</td>
+      <td>\n                    “A Hole in the Wall kind...</td>
+      <td>4.5 star rating</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [157]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">yelp_scraper</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rests</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;data-analytics-label&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-name&#39;</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rests</span><span class="p">:</span>
+        <span class="n">name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">stars</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">ratings</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;biz-rating&#39;</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ratings</span><span class="p">:</span>
+        <span class="n">stars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+
+    <span class="n">snip</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">revs</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;snippet&#39;</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">revs</span><span class="p">:</span>
+        <span class="n">snip</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;stars&#39;</span><span class="p">:</span> <span class="n">stars</span><span class="p">,</span> <span class="s1">&#39;snip&#39;</span><span class="p">:</span> <span class="n">snip</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [158]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp_scraper</span><span class="p">(</span><span class="s1">&#39;https://www.yelp.com/search?find_desc=beer&amp;find_loc=Upper+East+Side,+Manhattan,+NY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[158]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>snip</th>
+      <th>stars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yave Tequila</td>
+      <td>\n                    “YaVe Tequila is the fir...</td>
+      <td>5.0 star rating</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>City Swiggers</td>
+      <td>\n                    “Found this spot while v...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>City Hops</td>
+      <td>\n                    “Great beer shop! Come h...</td>
+      <td>4.5 star rating</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Jeffrey Craft Beer &amp; Bites</td>
+      <td>\n                    “They have an extensive ...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Pony Bar</td>
+      <td>\n                    “This place has a great ...</td>
+      <td>4.0 star rating</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [162]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp_scraper</span><span class="p">(</span><span class="s1">&#39;https://www.yelp.com/search?find_desc=tofu&amp;find_loc=Manhattan,+NY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[162]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>snip</th>
+      <th>stars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sayori Japanese Restaurant</td>
+      <td>\n                    “I don't really write re...</td>
+      <td>4.5 star rating</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>So Kong Dong</td>
+      <td>\n                    “cucumber, bean sprouts,...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BCD Tofu House</td>
+      <td>\n                    “was quite quick. Find b...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Natural Tofu Restaurant</td>
+      <td>\n                    “Not every dish is amazi...</td>
+      <td>3.5 star rating</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Tung Woo Co</td>
+      <td>\n                    “And if you don't know, ...</td>
+      <td>4.0 star rating</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [164]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp_scraper</span><span class="p">(</span><span class="s1">&#39;https://www.yelp.com/search?find_desc=ninjas&amp;find_loc=Manhattan,+NY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[164]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>snip</th>
+      <th>stars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Fusha Asian Cuisine</td>
+      <td>\n                    “Service was absolutely ...</td>
+      <td>3.5 star rating</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Ninja New York</td>
+      <td>\n                    “You have to go through ...</td>
+      <td>3.5 star rating</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ninja Grill</td>
+      <td>\n                    “Came here for some lunc...</td>
+      <td>4.0 star rating</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Ninja Sushi</td>
+      <td>\n                    “Had to review this plac...</td>
+      <td>4.5 star rating</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Raku - It’s Japanese II</td>
+      <td>\n                    “and they deliver the ro...</td>
+      <td>4.0 star rating</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <p class="caption"><span class="caption-text">Section I</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-syllabus.html">LMTH 2075-A: Data and Design with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">Introduction to Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-homework02.html">Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Folium.html">Mapping Data with Folium</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#countplot"><code class="docutils literal"><span class="pre">countplot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#groupby"><code class="docutils literal"><span class="pre">groupby</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#Webscraping-Intro">Webscraping Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_nlp.html">Are Punks Negative?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandsintown.html">BandsinTown</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="03-Folium.html" title="Mapping Data with Folium"
+              >previous</a> |
+            <a href="intro_nlp.html" title="Are Punks Negative?"
+              >next</a> |
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/intro_scraping.ipynb.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Jacob F. Koehler, PhD.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

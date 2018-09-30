@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c44f2ea1-b45b-45e0-b3c1-1a419aeb6c92" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/data_and_design.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/00-syllabus-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/00-syllabus-checkpoint.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/01-introduction-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/02-homework02-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/03-Folium-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/bandsintown-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/garden-checkpoint.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/intro_nlp-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/intro_scraping-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/quandl_finance-checkpoint.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Makefile" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Pipfile" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/LICENSE" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/bootstrap.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/bootstrap.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/font-awesome.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/font-awesome.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/algol.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/algol.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/algol_nu.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/algol_nu.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/autumn.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/autumn.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/borland.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/borland.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/bw.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/bw.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/colorful.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/colorful.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/default.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/default.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/emacs.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/emacs.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/friendly.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/friendly.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/fruity.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/fruity.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/igor.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/igor.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/lovelace.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/lovelace.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/manni.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/manni.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/monokai.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/monokai.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/murphy.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/murphy.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/native.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/native.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/paraiso-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/paraiso-dark.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/paraiso-light.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/paraiso-light.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/pastie.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/pastie.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/perldoc.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/perldoc.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/rrt.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/rrt.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/tango.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/tango.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/trac.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/trac.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/vim.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/vim.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/vs.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/vs.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/xcode.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/pygments/xcode.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/css/style.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/fonts/fontawesome-webfont.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/fonts/fontawesome-webfont.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/fonts/fontawesome-webfont.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/fonts/fontawesome-webfont.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/static/fonts/fontawesome-webfont.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/archives.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/article.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/author.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/authors.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/categories.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/category.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/include/analytics.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/include/comments.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/include/pagination.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/page.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/period_archives.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/sitemap.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/tag.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/alchemy/templates/tags.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/alchemy/screenshot.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/00-syllabus.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/01-introduction.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/02-homework02.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/03-Folium.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/bandsintown.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/environment.pickle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/index.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/intro_nlp.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/intro_scraping.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/01-introduction_25_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/01-introduction_4_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/01-introduction_5_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/02-homework02_32_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_nlp_18_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_nlp_65_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_nlp_66_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_nlp_81_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_nlp_87_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_scraping_11_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_scraping_22_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_scraping_23_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_scraping_25_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/doctrees/nbsphinx/intro_scraping_9_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/.buildinfo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/00-syllabus.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/01-introduction.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/02-homework02.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/03-Folium.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/01-introduction_25_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/01-introduction_4_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/01-introduction_5_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/02-homework02_32_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_nlp_18_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_nlp_65_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_nlp_66_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_nlp_81_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_nlp_87_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_scraping_11_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_scraping_22_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_scraping_23_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_scraping_25_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_images/intro_scraping_9_1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/00-syllabus.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/01-introduction.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/02-homework02.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/03-Folium.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/bandsintown.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/index.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/intro_nlp.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_sources/intro_scraping.ipynb.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/agogo.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/ajax-loader.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/alabaster.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/basic.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/bgfooter.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/bgtop.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/comment-bright.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/comment-close.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/comment.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/custom.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/doctools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/down-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/down.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/file.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/jquery-3.1.0.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/jquery.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/minus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/plus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/pygments.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/searchtools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/underscore-1.3.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/underscore.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/up-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/up.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/_static/websupport.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/bandsintown.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/genindex.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/intro_nlp.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/intro_scraping.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/objects.inv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/search.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build/html/searchindex.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build_push.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/content/00-syllabus.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/content/00-syllabus.nbdata" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/app.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/app_2.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/callback_intro.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/scatter_plot.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/slider.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/dash/table_app.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/README.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/cell_phone_churn.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/gun-violence-data.zip" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/links.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/mass_shootings.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/movies.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/nyc_police_incidents.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/ratings.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/tags.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/winemag-data-130k-v2.csv.zip" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/yelp.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/develop_server.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/fabfile.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flask/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flask/hello.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/nano" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/output/tag/python-firsts.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pelican-themes" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pelicanconf.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/LICENSE" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/core.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/ipynb.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/liquid.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/markup.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/requirements.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/content/with-liquid-tag.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/content/with-liquid-tag.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/content/with-meta-file.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/content/with-meta-file.ipynb-meta" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/content/with-metacell.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/pelicanconf_liquid.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/pelicanconf_markup.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/plugins/ipynb/tests/pelican/theme/templates/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/publishconf.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/00-syllabus.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/00-syllabus.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/01-introduction.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/02-homework02.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/03-Folium.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/bandsintown.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/conf.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/garden.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/bandsintown.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/folium.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/gun_violence.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/kwine.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/logo.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/movielens.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/mrrev.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/nycpopo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/sac.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/images/shootings.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/index.rst" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/index_map.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/intro_nlp.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/intro_scraping.ipynb" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/mrr_reviews.csv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tail" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/updating.sh" />
+      <change beforePath="$PROJECT_DIR$/archives.html" afterPath="$PROJECT_DIR$/output/archives.html" />
+      <change beforePath="$PROJECT_DIR$/author/jacob.html" afterPath="$PROJECT_DIR$/output/author/jacob.html" />
+      <change beforePath="$PROJECT_DIR$/authors.html" afterPath="$PROJECT_DIR$/output/authors.html" />
+      <change beforePath="$PROJECT_DIR$/categories.html" afterPath="$PROJECT_DIR$/output/categories.html" />
+      <change beforePath="$PROJECT_DIR$/category/posts.html" afterPath="$PROJECT_DIR$/output/category/posts.html" />
+      <change beforePath="$PROJECT_DIR$/feeds/all.atom.xml" afterPath="$PROJECT_DIR$/output/feeds/all.atom.xml" />
+      <change beforePath="$PROJECT_DIR$/feeds/posts.atom.xml" afterPath="$PROJECT_DIR$/output/feeds/posts.atom.xml" />
+      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/output/index.html" />
+      <change beforePath="$PROJECT_DIR$/syllabus.html" afterPath="$PROJECT_DIR$/output/syllabus.html" />
+      <change beforePath="$PROJECT_DIR$/tag/python-firsts.html" afterPath="$PROJECT_DIR$/build/html/.nojekyll" />
+      <change beforePath="$PROJECT_DIR$/tags.html" afterPath="$PROJECT_DIR$/output/tags.html" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="pelicanconf.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pelicanconf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="publishconf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/publishconf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/publishconf.py" />
+        <option value="$PROJECT_DIR$/pelicanconf.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="824" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="data_and_design" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data_and_design" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="data_and_design" type="b2602c69:ProjectViewProjectNode" />
+              <item name="data_and_design" type="462c0819:PsiDirectoryNode" />
+              <item name="pelican-themes" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c44f2ea1-b45b-45e0-b3c1-1a419aeb6c92" name="Default" comment="" />
+      <created>1538327240832</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1538327240832</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="824" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pelican-themes/Nuja/static/js/site.js" />
+        <option value="$PROJECT_DIR$/pelican-themes/Nuja/static/js/site.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/publishconf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pelicanconf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
