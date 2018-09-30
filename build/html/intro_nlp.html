@@ -1,0 +1,2663 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Are Punks Negative? &#8212; Data and Design 0.0.2 documentation</title>
+    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BandsinTown" href="bandsintown.html" />
+    <link rel="prev" title="Review" href="intro_scraping.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="index.html">Data and Design 0.0.2 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="intro_scraping.html" title="Review"
+             accesskey="P">previous</a> |
+          <a href="bandsintown.html" title="BandsinTown"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="Are-Punks-Negative?">
+<h1>Are Punks Negative?<a class="headerlink" href="#Are-Punks-Negative?" title="Permalink to this headline">¶</a></h1>
+<p>Today, our goal is to extend our webscraping capabilities and examine
+some record reviews from the website MaximumRocknRoll.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [138]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">HTML</span>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://youtu.be/F-ai3HGCjGA&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<iframe width="560" height="315" src="https://youtu.be/F-ai3HGCjGA" frameborder="0" allowfullscreen></iframe></div>
+</div>
+<div class="figure">
+<img alt="" src="images/mrrev.png" />
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [111]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">textblob</span> <span class="k">import</span> <span class="n">TextBlob</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [112]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hennessy is happy it&#39;s getting cold out.&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [113]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [114]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">words</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[114]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>WordList([&#39;Hennessy&#39;, &#39;is&#39;, &#39;happy&#39;, &#39;it&#39;, &quot;&#39;s&quot;, &#39;getting&#39;, &#39;cold&#39;, &#39;out&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [115]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[115]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>TextBlob(&quot;HENNESSY IS HAPPY IT&#39;S GETTING COLD OUT.&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [116]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">sentiment</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[116]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>Sentiment(polarity=0.10000000000000003, subjectivity=1.0)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [117]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">pos_tags</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[117]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[(&#39;Hennessy&#39;, &#39;NNP&#39;),
+ (&#39;is&#39;, &#39;VBZ&#39;),
+ (&#39;happy&#39;, &#39;JJ&#39;),
+ (&#39;it&#39;, &#39;PRP&#39;),
+ (&quot;&#39;s&quot;, &#39;VBZ&#39;),
+ (&#39;getting&#39;, &#39;VBG&#39;),
+ (&#39;cold&#39;, &#39;VBN&#39;),
+ (&#39;out&#39;, &#39;RP&#39;)]
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [118]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text2</span> <span class="o">=</span> <span class="s2">&quot;my soup was made with tomato and beans&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [119]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob2</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [120]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob2</span><span class="o">.</span><span class="n">sentiment</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[120]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>Sentiment(polarity=0.0, subjectivity=0.0)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [121]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob2</span><span class="o">.</span><span class="n">word_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[121]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>defaultdict(int,
+            {&#39;and&#39;: 1,
+             &#39;beans&#39;: 1,
+             &#39;made&#39;: 1,
+             &#39;my&#39;: 1,
+             &#39;soup&#39;: 1,
+             &#39;tomato&#39;: 1,
+             &#39;was&#39;: 1,
+             &#39;with&#39;: 1})
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [122]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">blob2</span><span class="o">.</span><span class="n">word_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[74]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_keys([&#39;my&#39;, &#39;soup&#39;, &#39;was&#39;, &#39;made&#39;, &#39;with&#39;, &#39;tomato&#39;, &#39;and&#39;, &#39;beans&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[75]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_values([1, 1, 1, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[77]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;Container object of 8 artists&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_nlp_18_1.png" src="_images/intro_nlp_18_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [123]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [124]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/yelp.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [125]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 10 columns):
+business_id    10000 non-null object
+date           10000 non-null object
+review_id      10000 non-null object
+stars          10000 non-null int64
+text           10000 non-null object
+type           10000 non-null object
+user_id        10000 non-null object
+cool           10000 non-null int64
+useful         10000 non-null int64
+funny          10000 non-null int64
+dtypes: int64(4), object(6)
+memory usage: 781.3+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[89]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>business_id</th>
+      <th>date</th>
+      <th>review_id</th>
+      <th>stars</th>
+      <th>text</th>
+      <th>type</th>
+      <th>user_id</th>
+      <th>cool</th>
+      <th>useful</th>
+      <th>funny</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>9yKzy9PApeiPPOUJEtnvkg</td>
+      <td>2011-01-26</td>
+      <td>fWKvX83p0-ka4JS3dc6E5A</td>
+      <td>5</td>
+      <td>My wife took me here on my birthday for breakf...</td>
+      <td>review</td>
+      <td>rLtl8ZkDX5vH5nAx9C3q5Q</td>
+      <td>2</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ZRJwVLyzEJq1VAihDhYiow</td>
+      <td>2011-07-27</td>
+      <td>IjZ33sJrzXqU-0X6U8NwyA</td>
+      <td>5</td>
+      <td>I have no idea why some people give bad review...</td>
+      <td>review</td>
+      <td>0a2KyEL0d3Yb1V6aivbIuQ</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>6oRAC4uyJCsJl1X0WZpVSA</td>
+      <td>2012-06-14</td>
+      <td>IESLBzqUCLdSzSqm0eCSxQ</td>
+      <td>4</td>
+      <td>love the gyro plate. Rice is so good and I als...</td>
+      <td>review</td>
+      <td>0hT2KtfLiobPvh6cDC8JQg</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>_1QQZuf4zZOyFCvXc0o6Vg</td>
+      <td>2010-05-27</td>
+      <td>G-WvGaISbqqaMHlNnByodA</td>
+      <td>5</td>
+      <td>Rosie, Dakota, and I LOVE Chaparral Dog Park!!...</td>
+      <td>review</td>
+      <td>uZetl9T0NcROGOyFfughhg</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6ozycU1RpktNG2-1BroVtw</td>
+      <td>2012-01-05</td>
+      <td>1uJFq2r5QfJG_6ExMRCaGw</td>
+      <td>5</td>
+      <td>General Manager Scott Petello is a good egg!!!...</td>
+      <td>review</td>
+      <td>vYmM4KTsC8ZfQBg-j5MWkw</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">yelp</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[90]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;My wife took me here on my birthday for breakfast and it was excellent.  The weather was perfect which made sitting outside overlooking their grounds an absolute pleasure.  Our waitress was excellent and our food arrived quickly on the semi-busy Saturday morning.  It looked like the place fills up pretty quickly so the earlier you get here the better.\n\nDo yourself a favor and get their Bloody Mary.  It was phenomenal and simply the best I\&#39;ve ever had.  I\&#39;m pretty sure they only use ingredients from their garden and blend them fresh when you order it.  It was amazing.\n\nWhile EVERYTHING on the menu looks excellent, I had the white truffle scrambled eggs vegetable skillet and it was tasty and delicious.  It came with 2 pieces of their griddled bread with was amazing and it absolutely made the meal complete.  It was the best &quot;toast&quot; I\&#39;ve ever had.\n\nAnyway, I can\&#39;t wait to go back!&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [91]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span> <span class="o">=</span> <span class="n">yelp</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [95]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[95]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_values([2, 1, 1, 1, 2, 3, 1, 1, 1, 8, 9, 8, 3, 10, 1, 1, 1, 2, 1, 1, 1, 4, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 2, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[96]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_keys([&#39;my&#39;, &#39;wife&#39;, &#39;took&#39;, &#39;me&#39;, &#39;here&#39;, &#39;on&#39;, &#39;birthday&#39;, &#39;for&#39;, &#39;breakfast&#39;, &#39;and&#39;, &#39;it&#39;, &#39;was&#39;, &#39;excellent&#39;, &#39;the&#39;, &#39;weather&#39;, &#39;perfect&#39;, &#39;which&#39;, &#39;made&#39;, &#39;sitting&#39;, &#39;outside&#39;, &#39;overlooking&#39;, &#39;their&#39;, &#39;grounds&#39;, &#39;an&#39;, &#39;absolute&#39;, &#39;pleasure&#39;, &#39;our&#39;, &#39;waitress&#39;, &#39;food&#39;, &#39;arrived&#39;, &#39;quickly&#39;, &#39;semi-busy&#39;, &#39;saturday&#39;, &#39;morning&#39;, &#39;looked&#39;, &#39;like&#39;, &#39;place&#39;, &#39;fills&#39;, &#39;up&#39;, &#39;pretty&#39;, &#39;so&#39;, &#39;earlier&#39;, &#39;you&#39;, &#39;get&#39;, &#39;better&#39;, &#39;do&#39;, &#39;yourself&#39;, &#39;a&#39;, &#39;favor&#39;, &#39;bloody&#39;, &#39;mary&#39;, &#39;phenomenal&#39;, &#39;simply&#39;, &#39;best&#39;, &#39;i&#39;, &#39;ve&#39;, &#39;ever&#39;, &#39;had&#39;, &#39;m&#39;, &#39;sure&#39;, &#39;they&#39;, &#39;only&#39;, &#39;use&#39;, &#39;ingredients&#39;, &#39;from&#39;, &#39;garden&#39;, &#39;blend&#39;, &#39;them&#39;, &#39;fresh&#39;, &#39;when&#39;, &#39;order&#39;, &#39;amazing&#39;, &#39;while&#39;, &#39;everything&#39;, &#39;menu&#39;, &#39;looks&#39;, &#39;white&#39;, &#39;truffle&#39;, &#39;scrambled&#39;, &#39;eggs&#39;, &#39;vegetable&#39;, &#39;skillet&#39;, &#39;tasty&#39;, &#39;delicious&#39;, &#39;came&#39;, &#39;with&#39;, &#39;2&#39;, &#39;pieces&#39;, &#39;of&#39;, &#39;griddled&#39;, &#39;bread&#39;, &#39;absolutely&#39;, &#39;meal&#39;, &#39;complete&#39;, &#39;toast&#39;, &#39;anyway&#39;, &#39;ca&#39;, &quot;n&#39;t&quot;, &#39;wait&#39;, &#39;to&#39;, &#39;go&#39;, &#39;back&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [97]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">sentences</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[97]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[Sentence(&quot;My wife took me here on my birthday for breakfast and it was excellent.&quot;),
+ Sentence(&quot;The weather was perfect which made sitting outside overlooking their grounds an absolute pleasure.&quot;),
+ Sentence(&quot;Our waitress was excellent and our food arrived quickly on the semi-busy Saturday morning.&quot;),
+ Sentence(&quot;It looked like the place fills up pretty quickly so the earlier you get here the better.&quot;),
+ Sentence(&quot;Do yourself a favor and get their Bloody Mary.&quot;),
+ Sentence(&quot;It was phenomenal and simply the best I&#39;ve ever had.&quot;),
+ Sentence(&quot;I&#39;m pretty sure they only use ingredients from their garden and blend them fresh when you order it.&quot;),
+ Sentence(&quot;It was amazing.&quot;),
+ Sentence(&quot;While EVERYTHING on the menu looks excellent, I had the white truffle scrambled eggs vegetable skillet and it was tasty and delicious.&quot;),
+ Sentence(&quot;It came with 2 pieces of their griddled bread with was amazing and it absolutely made the meal complete.&quot;),
+ Sentence(&quot;It was the best &quot;toast&quot; I&#39;ve ever had.&quot;),
+ Sentence(&quot;Anyway, I can&#39;t wait to go back!&quot;)]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [98]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">blob</span><span class="o">.</span><span class="n">sentiment</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[98]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>Sentiment(polarity=0.40246913580246907, subjectivity=0.6591122868900646)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [105]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [106]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;best&#39;</span><span class="p">,</span> <span class="s1">&#39;great&#39;</span><span class="p">,</span> <span class="s1">&#39;loved&#39;</span><span class="p">,</span> <span class="s1">&#39;excellent&#39;</span><span class="p">,</span> <span class="s1">&#39;pleasure&#39;</span><span class="p">,</span> <span class="s1">&#39;phenomenal&#39;</span><span class="p">]</span>
+<span class="n">neg</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;worst&#39;</span><span class="p">,</span> <span class="s1">&#39;bad&#39;</span><span class="p">,</span> <span class="s1">&#39;hated&#39;</span><span class="p">,</span> <span class="s1">&#39;terrible&#39;</span><span class="p">,</span> <span class="s1">&#39;miserable&#39;</span><span class="p">,</span> <span class="s1">&#39;awful&#39;</span><span class="p">,</span> <span class="s1">&#39;gross&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [108]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">pos</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">neg</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [110]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[110]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>4
+</pre></div>
+</div>
+</div>
+<div class="section" id="Record-Reviews">
+<h2>Record Reviews<a class="headerlink" href="#Record-Reviews" title="Permalink to this headline">¶</a></h2>
+<p>Now, we want to download some record reviews, and assess the language
+used.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://maximumrocknroll.com/cat/reviews/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;http://maximumrocknroll.com/reissue-of-the-week-hex-poison-in-the-system-the-demos-lp/&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">links</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;http://maximumrocknroll.com/reissue-of-the-week-hex-poison-in-the-system-the-demos-lp/&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+http://maximumrocknroll.com/reissue-of-the-week-hex-poison-in-the-system-the-demos-lp/
+http://maximumrocknroll.com/record-of-the-week-g-l-o-s-s-girls-living-outside-societys-shit-ep/
+http://maximumrocknroll.com/reissue-of-the-week-the-hunches/
+http://maximumrocknroll.com/record-of-the-week-la-misma/
+http://maximumrocknroll.com/reissue-of-the-week-ebenezer-and-the-bludgeons-peer-pressure-lp/
+http://maximumrocknroll.com/reissue-of-the-week-eutanasia-sentimiento-de-agitacion-lp/
+http://maximumrocknroll.com/reissue-of-the-week-bikini-kill-revolution-girl-style-now-lp/
+http://maximumrocknroll.com/record-of-the-week-aye-nako-the-blackest-eye-ep/
+http://maximumrocknroll.com/reissue-of-the-week-mercenarias-demo-1983-lp/
+http://maximumrocknroll.com/record-of-the-week-dan-melchiors-broke-review-lords-of-the-manor-ep/
+http://maximumrocknroll.com/reissue-of-the-week-disclose/
+http://maximumrocknroll.com/read-a-book-a-wailing-of-a-town/
+http://maximumrocknroll.com/reissue-of-the-week-conflict/
+http://maximumrocknroll.com/record-of-the-week-negative-scanner/
+http://maximumrocknroll.com/reissue-of-the-week-reatards/
+http://maximumrocknroll.com/reissue-of-the-week-happy/
+http://maximumrocknroll.com/record-of-the-week-nervosas/
+http://maximumrocknroll.com/record-of-the-week-basement-benders/
+http://maximumrocknroll.com/record-of-the-week-c-c-t-v/
+http://maximumrocknroll.com/reissue-of-the-week/
+http://maximumrocknroll.com/record-of-the-week-andy-human-and-the-reptoids/
+http://maximumrocknroll.com/record-of-the-week-no-form/
+http://maximumrocknroll.com/reissue-of-the-week-blitzkrieg/
+http://maximumrocknroll.com/record-of-the-week-power-masters/
+http://maximumrocknroll.com/reissue-of-the-week-broken-talent/
+http://maximumrocknroll.com/records-of-the-week-violence-creeps/
+http://maximumrocknroll.com/record-of-the-week-no/
+http://maximumrocknroll.com/reissue-of-the-week-dva-minuta-mrzne/
+http://maximumrocknroll.com/25210/
+http://maximumrocknroll.com/reissue-of-the-week-tragiedia/
+http://maximumrocknroll.com/record-of-the-week-gas-chamber/
+http://maximumrocknroll.com/record-of-the-week-black-time/
+http://maximumrocknroll.com/reissue-of-the-week-moskwa/
+http://maximumrocknroll.com/record-of-the-week-flesh-world/
+http://maximumrocknroll.com/record-of-the-week-slugga/
+http://maximumrocknroll.com/reissue-of-the-week-flag-of-democracy/
+http://maximumrocknroll.com/reissue-of-the-week-blast/
+http://maximumrocknroll.com/record-of-the-day-aquarian-blood/
+http://maximumrocknroll.com/read-a-book-brooks-headley-on-soy-not-oi/
+http://maximumrocknroll.com/record-of-the-week-abuse-of-substance-substance-abuse-ep/
+http://maximumrocknroll.com/record-of-the-week-vlasta-popic-kvadrat-cd/
+http://maximumrocknroll.com/record-of-the-week-last-sons-of-krypton-teenage-trash-lp-2/
+http://maximumrocknroll.com/record-of-the-week-gay-kiss-preservation-measures-lp/
+http://maximumrocknroll.com/record-of-the-week-nature-boys-pissy-windcoast-to-coast-7/
+http://maximumrocknroll.com/reissue-of-the-week-soberania-personal-benditos-sean-munecos-que-pegan-lp/
+http://maximumrocknroll.com/records-of-the-week-vatican-dagger-7-rixe-7/
+http://maximumrocknroll.com/record-of-the-week-kronofogden-arbete-ocheller-fritid-lp/
+http://maximumrocknroll.com/record-of-the-week-solutions-life-of-joy-12/
+http://maximumrocknroll.com/record-of-the-week-barcelona-extremo-nihilismo-12/
+http://maximumrocknroll.com/record-of-the-week-davidians-night-terrorsgimme-all-yo-dope-45/
+http://maximumrocknroll.com/reissue-of-the-week-pink-section-lp/
+http://maximumrocknroll.com/record-of-the-week-morkhimmel-lp/
+http://maximumrocknroll.com/record-of-the-week-mystery-date-new-noir-lp/
+http://maximumrocknroll.com/record-of-the-week-sierpien-zawsze-nasze-lp/
+http://maximumrocknroll.com/record-of-the-week-demolition-bombenhagel-cd/
+http://maximumrocknroll.com/record-of-the-week-neighborhood-brats-recovery-lp/
+http://maximumrocknroll.com/record-of-the-week-dribble-lovers-7/
+http://maximumrocknroll.com/record-of-the-week-crime-desire-your-power-lp/
+http://maximumrocknroll.com/record-of-the-week-young-conservatives-12/
+http://maximumrocknroll.com/record-of-the-week-boston-strangler-fire-lp/
+http://maximumrocknroll.com/reissue-of-the-week-alians-gavroche-lp/
+http://maximumrocknroll.com/record-of-the-week-destruye-y-huye-oscura-sociedad-ep/
+http://maximumrocknroll.com/record-of-the-week-no-sir-i-wont-shit-12/
+http://maximumrocknroll.com/record-of-the-week-cadaver-em-transe-lp/
+http://maximumrocknroll.com/read-a-book-valerie-solanas-the-defiant-life-of-the-woman-who-wrote-scum-and-shot-andy-warhol/
+http://maximumrocknroll.com/record-of-the-week-copycats-an-idea-died-lp/
+http://maximumrocknroll.com/reissue-of-the-week-deathwish-tailgate-12/
+http://maximumrocknroll.com/record-of-the-week-hounds-of-hate-hate-springs-eternal-lp/
+http://maximumrocknroll.com/record-of-the-week-no-faith-dead-weight-ep/
+http://maximumrocknroll.com/reissue-of-the-week-x-aspirations-lp/
+http://maximumrocknroll.com/record-of-the-week-la-flingueornitorrincos-punk-to-cross-borders-split-ep/
+http://maximumrocknroll.com/reissue-of-the-week-sin-34-do-you-feel-safe-lp/
+http://maximumrocknroll.com/record-of-the-week-plastic-crimewavespeed-guru-split-ep-book/
+http://maximumrocknroll.com/record-of-the-week-generacion-suicida-todo-termina-lp/
+http://maximumrocknroll.com/record-of-the-week-moira-scar-and-low-threat-profile/
+http://maximumrocknroll.com/record-of-the-week-p-i-g-z-bloody-belgium-ep/
+http://maximumrocknroll.com/record-of-the-week-grand-collapse-far-from-the-callous-crowd-lp/
+http://maximumrocknroll.com/record-of-the-week-frau-punk-is-my-boyfriend-ep/
+http://maximumrocknroll.com/record-of-the-week-ovens-feel-like-shit-ep/
+http://maximumrocknroll.com/record-of-the-week-protestant-in-thy-name-lp/
+http://maximumrocknroll.com/record-of-the-week-tercer-mundo-lp/
+http://maximumrocknroll.com/record-of-the-week-qloaqa-letal-nunca-siempre-lp/
+http://maximumrocknroll.com/too-smart-for-their-own-sake-torontos-actual-water/
+http://maximumrocknroll.com/record-of-the-week-contortureahna-split-ep/
+http://maximumrocknroll.com/record-of-the-week-s-h-i-t-generation-shit-ep/
+http://maximumrocknroll.com/record-of-the-week-taulard-les-abords-du-lycee-lp/
+http://maximumrocknroll.com/record-of-the-week-femacoffin-dismal-twilight-ep/
+http://maximumrocknroll.com/record-of-the-week-dhk-extincion-ep-plus-interview-en-espanol/
+http://maximumrocknroll.com/record-of-the-week-berlin-tristesse/
+http://maximumrocknroll.com/record-of-the-week-obediencia-el-angel-exterminador-ep/
+http://maximumrocknroll.com/record-of-the-week-accidente-amistad-y-rebelion-12/
+http://maximumrocknroll.com/record-of-the-week-eastlink-lp/
+http://maximumrocknroll.com/record-of-the-week-suicidas-ep/
+http://maximumrocknroll.com/secret-prositutes-lp/
+http://maximumrocknroll.com/record-of-the-week-ross-johnson-and-jeffrey-evans-vanity-session-lp/
+http://maximumrocknroll.com/record-of-the-week-jailbird-y-ums-ep/
+http://maximumrocknroll.com/record-of-the-week-rakta-12/
+http://maximumrocknroll.com/record-of-the-week-negative-standardswhitehorse-split-lp/
+http://maximumrocknroll.com/record-of-the-week-completed-exposition-lp/
+http://maximumrocknroll.com/record-of-the-week-hoax-lp/
+http://maximumrocknroll.com/tam89-4/
+http://maximumrocknroll.com/records-of-the-week-tam89-3/
+http://maximumrocknroll.com/record-of-the-week-tam89-2/
+http://maximumrocknroll.com/record-of-the-week-tam89-1/
+http://maximumrocknroll.com/record-of-the-week-concrete-cross-lp/
+http://maximumrocknroll.com/record-of-the-week-the-trashies-teenage-rattlesnakes-lp/
+http://maximumrocknroll.com/record-of-the-week-diataraxi-koinis-isixias-comp-lp/
+http://maximumrocknroll.com/record-of-the-week-irreparables-12/
+http://maximumrocknroll.com/record-of-the-week-amdi-petersens-arme-lp/
+http://maximumrocknroll.com/from-the-vaults-fertil-miseria-cadenas-ep/
+http://maximumrocknroll.com/record-of-the-week-abergaz-%c2%ad-minimalizam-megalomanije/
+http://maximumrocknroll.com/peruvian-punk-documentaries-el-grito-subterraneo-y-lima-explota/
+http://maximumrocknroll.com/snob-value-whiteout-lp/
+http://maximumrocknroll.com/record-of-the-future-antimob-lp/
+http://maximumrocknroll.com/from-the-vaults-drowning-roses/
+http://maximumrocknroll.com/record-of-the-week-apogee-sound-club/
+http://maximumrocknroll.com/zine-of-the-week-no-exit-vol-5/
+http://maximumrocknroll.com/record-of-the-week-brain-killers-3rd-ep/
+http://maximumrocknroll.com/zine-of-the-week-excitement-level-zero-3/
+http://maximumrocknroll.com/record-of-the-week-cross-stitched-eyes-decomposition-lp/
+http://maximumrocknroll.com/zine-of-the-month-rad-party-42/
+http://maximumrocknroll.com/records-of-the-week-big-eyes-hot-nasties/
+http://maximumrocknroll.com/from-the-vaults-down-syndrome-ep/
+http://maximumrocknroll.com/record-of-the-week-nu-kle-er-blast-suntan/
+http://maximumrocknroll.com/from-the-vaults-gulag-lp/
+http://maximumrocknroll.com/record-of-the-week-omegas-ny-terminator-ep/
+http://maximumrocknroll.com/record-of-the-week-rvivr/
+http://maximumrocknroll.com/cassette-of-the-week-sac-anthology-1999-2004/
+http://maximumrocknroll.com/from-the-vaults-bread-and-water/
+http://maximumrocknroll.com/record-of-the-week-armagedomterokal-split-ep/
+http://maximumrocknroll.com/from-the-vaults-keine-experimente-vol-ii-comp-lp/
+http://maximumrocknroll.com/record-of-the-week-las-4-bandas-comp-lp/
+http://maximumrocknroll.com/record-of-the-week-laalts-onanie-ship-cabaret-cd/
+http://maximumrocknroll.com/come-to-our-show-a-punk-flyer-ebook/
+http://maximumrocknroll.com/record-of-the-week-gash-cleansing-wave/
+http://maximumrocknroll.com/white-riot-another-failure/
+http://maximumrocknroll.com/record-of-the-week-welcome-to-the-arse-end-of-the-world-compilation-lp/
+http://maximumrocknroll.com/record-of-the-week-john-henry-west-door-bolted-shut-lpcd/
+http://maximumrocknroll.com/record-of-the-week-sharkpact-ditches-lp/
+http://maximumrocknroll.com/read-a-book-the-encyclopedia-of-doris/
+http://maximumrocknroll.com/record-of-the-week-rattus-holokaust-split-ep/
+http://maximumrocknroll.com/record-of-the-week-royal-headache-lp/
+http://maximumrocknroll.com/record-of-the-week-star-fucking-hipsters-lp/
+http://maximumrocknroll.com/record-of-the-week-deathcage-dephosphorus/
+http://maximumrocknroll.com/record-of-the-week-big-eyes-hard-life-lp/
+http://maximumrocknroll.com/record-of-the-week-morbo-lp/
+http://maximumrocknroll.com/record-of-the-week-contra-todos-mis-miedos-colera-ep/
+http://maximumrocknroll.com/record-of-the-week-isterismo-lp/
+http://maximumrocknroll.com/record-of-the-week-razorxfade-lp/
+http://maximumrocknroll.com/record-of-the-week-a-tale-of-rotten-orange/
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://maximumrocknroll.com/reissue-of-the-week-hex-poison-in-the-system-the-demos-lp/&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">article</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;article class=&quot;wrapper&quot;&gt;
+&lt;div class=&quot;column-central&quot;&gt;
+&lt;h2&gt;Reissue of the Week: HEX &lt;em&gt;Poison In The System: The Demos&lt;/em&gt; LP&lt;/h2&gt;
+&lt;ul class=&quot;meta-list&quot;&gt;
+&lt;li&gt;
+&lt;span class=&quot;meta-key&quot;&gt;Published &lt;/span&gt; &lt;span class=&quot;meta-value&quot;&gt;November 13, 2015&lt;/span&gt; &lt;span class=&quot;meta-key&quot;&gt;By&lt;/span&gt; &lt;span class=&quot;meta-value&quot;&gt;MRR&lt;/span&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;span class=&quot;meta-key&quot;&gt;Categories&lt;/span&gt;
+&lt;span class=&quot;meta-value&quot;&gt;
+&lt;a href=&quot;http://maximumrocknroll.com/cat/reviews/&quot;&gt;Reviews&lt;/a&gt; &lt;/span&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img alt=&quot;&quot; class=&quot;alignleft&quot; height=&quot;318&quot; src=&quot;http://images.bigcartel.com/bigcartel/product_images/163074247/max_h-1000+max_w-1000/btrcrs085_snip.JPG&quot; width=&quot;306&quot;/&gt;&lt;strong&gt;HEX – “Poison In The System: The Demos” CD&lt;/strong&gt;&lt;br/&gt;
+If you liked your punk, the UK in the early to mid ’80s was a good place to be. Not only were all kinds of genres flourishing within said rubric, but there was a significant community of like-minded souls, putting on gigs, writing (and distributing) fanzines, (cassette) tape labels, and whatnot. It meant that bands could (and did!) release demos, on cassette, and distribute them far and wide. The anarcho-punk “scene,” spawned by the likes of CRASS and their progeny (SUBHUMANS, CONFLICT, FLUX OF PINK INDIANS, MOB, et al.) were the inspiration and incubator for HEX. Hailing from the Northeast of England, they were part and parcel of the legendary (well, to us folks, anyways) Sunderland Bunker, a venue, and musicians collective. Herein you’ll find four demos tapes (fourteen tracks in all), recorded in 1986 and 1987. A variety of musical styles, evocative of KILLING JOKE, ANTISECT, and the FAMOUS IMPOSTERS grace the demos. It all features the music gifts of Dickie Hammond and Dave Lainey, better known for playing in HDQ and later LEATHERFACE. Really great stuff all round, and some excellent liner notes do a superb job of capturing the sense of community, and possibility that was nurtured by the scene. (Ramsey Kanaan)&lt;br/&gt;
+(&lt;a href=&quot;http://www.bosstuneage.com/&quot; target=&quot;_blank&quot;&gt;Boss Tuneage&lt;/a&gt;)&lt;/div&gt;&lt;/article&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">h2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;h2&gt;Reissue of the Week: HEX &lt;em&gt;Poison In The System: The Demos&lt;/em&gt; LP&lt;/h2&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">soup</span><span class="o">.</span><span class="n">article</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;\n\nReissue of the Week: HEX Poison In The System: The Demos LP\n\n\nPublished  November 13, 2015 By MRR\n\n\nCategories\n\nReviews \n\n\nHEX – “Poison In The System: The Demos” CD\nIf you liked your punk, the UK in the early to mid ’80s was a good place to be. Not only were all kinds of genres flourishing within said rubric, but there was a significant community of like-minded souls, putting on gigs, writing (and distributing) fanzines, (cassette) tape labels, and whatnot. It meant that bands could (and did!) release demos, on cassette, and distribute them far and wide. The anarcho-punk “scene,” spawned by the likes of CRASS and their progeny (SUBHUMANS, CONFLICT, FLUX OF PINK INDIANS, MOB, et al.) were the inspiration and incubator for HEX. Hailing from the Northeast of England, they were part and parcel of the legendary (well, to us folks, anyways) Sunderland Bunker, a venue, and musicians collective. Herein you’ll find four demos tapes (fourteen tracks in all), recorded in 1986 and 1987. A variety of musical styles, evocative of KILLING JOKE, ANTISECT, and the FAMOUS IMPOSTERS grace the demos. It all features the music gifts of Dickie Hammond and Dave Lainey, better known for playing in HDQ and later LEATHERFACE. Really great stuff all round, and some excellent liner notes do a superb job of capturing the sense of community, and possibility that was nurtured by the scene. (Ramsey Kanaan)\n(Boss Tuneage)&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://maximumrocknroll.com/cat/reviews/&#39;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">review</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">title</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+    <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">review</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">article</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">h2</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;album&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s1">&#39;review&#39;</span><span class="p">:</span> <span class="n">review</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>album</th>
+      <th>review</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Reissue of the Week: HEX Poison In The System:...</td>
+      <td>\n\nReissue of the Week: HEX Poison In The Sys...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Record of the Week: G.L.O.S.S. Girls Living Ou...</td>
+      <td>\n\nRecord of the Week: G.L.O.S.S. Girls Livin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Reissue of the Week: The Hunches</td>
+      <td>\n\nReissue of the Week: The Hunches\n\n\nPubl...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Record of the Week: La Misma</td>
+      <td>\n\nRecord of the Week: La Misma\n\n\nPublishe...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Reissue of the Week: EBENEZER AND THE BLUDGEON...</td>
+      <td>\n\nReissue of the Week: EBENEZER AND THE BLUD...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[21]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>(150, 2)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[22]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;\n\nReissue of the Week: HEX Poison In The System: The Demos LP\n\n\nPublished  November 13, 2015 By MRR\n\n\nCategories\n\nReviews \n\n\nHEX – “Poison In The System: The Demos” CD\nIf you liked your punk, the UK in the early to mid ’80s was a good place to be. Not only were all kinds of genres flourishing within said rubric, but there was a significant community of like-minded souls, putting on gigs, writing (and distributing) fanzines, (cassette) tape labels, and whatnot. It meant that bands could (and did!) release demos, on cassette, and distribute them far and wide. The anarcho-punk “scene,” spawned by the likes of CRASS and their progeny (SUBHUMANS, CONFLICT, FLUX OF PINK INDIANS, MOB, et al.) were the inspiration and incubator for HEX. Hailing from the Northeast of England, they were part and parcel of the legendary (well, to us folks, anyways) Sunderland Bunker, a venue, and musicians collective. Herein you’ll find four demos tapes (fourteen tracks in all), recorded in 1986 and 1987. A variety of musical styles, evocative of KILLING JOKE, ANTISECT, and the FAMOUS IMPOSTERS grace the demos. It all features the music gifts of Dickie Hammond and Dave Lainey, better known for playing in HDQ and later LEATHERFACE. Really great stuff all round, and some excellent liner notes do a superb job of capturing the sense of community, and possibility that was nurtured by the scene. (Ramsey Kanaan)\n(Boss Tuneage)&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">textblob</span> <span class="k">import</span> <span class="n">TextBlob</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;mrr_reviews.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;mrr_reviews.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">sentences</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[26]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[Sentence(&quot;
+
+ Reissue of the Week: HEX Poison In The System: The Demos LP
+
+
+ Published  November 13, 2015 By MRR
+
+
+ Categories
+
+ Reviews
+
+
+ HEX – “Poison In The System: The Demos” CD
+ If you liked your punk, the UK in the early to mid ’80s was a good place to be.&quot;),
+ Sentence(&quot;Not only were all kinds of genres flourishing within said rubric, but there was a significant community of like-minded souls, putting on gigs, writing (and distributing) fanzines, (cassette) tape labels, and whatnot.&quot;),
+ Sentence(&quot;It meant that bands could (and did!)&quot;),
+ Sentence(&quot;release demos, on cassette, and distribute them far and wide.&quot;),
+ Sentence(&quot;The anarcho-punk “scene,” spawned by the likes of CRASS and their progeny (SUBHUMANS, CONFLICT, FLUX OF PINK INDIANS, MOB, et al.)&quot;),
+ Sentence(&quot;were the inspiration and incubator for HEX.&quot;),
+ Sentence(&quot;Hailing from the Northeast of England, they were part and parcel of the legendary (well, to us folks, anyways) Sunderland Bunker, a venue, and musicians collective.&quot;),
+ Sentence(&quot;Herein you’ll find four demos tapes (fourteen tracks in all), recorded in 1986 and 1987.&quot;),
+ Sentence(&quot;A variety of musical styles, evocative of KILLING JOKE, ANTISECT, and the FAMOUS IMPOSTERS grace the demos.&quot;),
+ Sentence(&quot;It all features the music gifts of Dickie Hammond and Dave Lainey, better known for playing in HDQ and later LEATHERFACE.&quot;),
+ Sentence(&quot;Really great stuff all round, and some excellent liner notes do a superb job of capturing the sense of community, and possibility that was nurtured by the scene.&quot;),
+ Sentence(&quot;(Ramsey Kanaan)
+ (Boss Tuneage)&quot;)]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">sentiment</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>Sentiment(polarity=0.3538194444444444, subjectivity=0.6069444444444445)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">subjectivity</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[28]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.6069444444444445
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">polarity</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[29]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.3538194444444444
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">pol</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">subj</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">:</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">pol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">polarity</span><span class="p">)</span>
+    <span class="n">subj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">sentiment</span><span class="o">.</span><span class="n">subjectivity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pol</span>
+<span class="n">reviews</span><span class="p">[</span><span class="s1">&#39;subjectivity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subj</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [126]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[126]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>album</th>
+      <th>review</th>
+      <th>polarity</th>
+      <th>subjectivity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Reissue of the Week: HEX Poison In The System:...</td>
+      <td>\n\nReissue of the Week: HEX Poison In The Sys...</td>
+      <td>0.353819</td>
+      <td>0.606944</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Record of the Week: G.L.O.S.S. Girls Living Ou...</td>
+      <td>\n\nRecord of the Week: G.L.O.S.S. Girls Livin...</td>
+      <td>0.087500</td>
+      <td>0.594318</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Reissue of the Week: The Hunches</td>
+      <td>\n\nReissue of the Week: The Hunches\n\n\nPubl...</td>
+      <td>0.079167</td>
+      <td>0.490625</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Record of the Week: La Misma</td>
+      <td>\n\nRecord of the Week: La Misma\n\n\nPublishe...</td>
+      <td>0.077406</td>
+      <td>0.480249</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Reissue of the Week: EBENEZER AND THE BLUDGEON...</td>
+      <td>\n\nReissue of the Week: EBENEZER AND THE BLUD...</td>
+      <td>0.164881</td>
+      <td>0.576786</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [128]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;polarity&#39;</span><span class="p">)[</span><span class="s1">&#39;album&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[128]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>76    Record of the Week: GRAND COLLAPSE Far From th...
+0     Reissue of the Week: HEX Poison In The System:...
+92    Record of the Week: SUICIDAS No Nos Mata la Mu...
+26                               Record of the Week: NO
+63             Record of the Week: CADAVER EM TRANSE LP
+Name: album, dtype: object
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [129]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">polarity</span><span class="p">,</span> <span class="n">reviews</span><span class="o">.</span><span class="n">subjectivity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[129]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.collections.PathCollection at 0x11742c0f0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_nlp_65_1.png" src="_images/intro_nlp_65_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [130]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[130]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x117448128&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_nlp_66_1.png" src="_images/intro_nlp_66_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [131]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="p">[</span><span class="n">reviews</span><span class="p">[</span><span class="s1">&#39;polarity&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[131]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>album</th>
+      <th>review</th>
+      <th>polarity</th>
+      <th>subjectivity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>Reissue of the Week: EUTANASIA Sentimiento de ...</td>
+      <td>\n\nReissue of the Week: EUTANASIA Sentimiento...</td>
+      <td>-0.151726</td>
+      <td>0.486785</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Record of the Week: C.C.T.V</td>
+      <td>\n\nRecord of the Week: C.C.T.V\n\n\nPublished...</td>
+      <td>-0.013326</td>
+      <td>0.536119</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Record of the Week: Power Masters</td>
+      <td>\n\nRecord of the Week: Power Masters\n\n\nPub...</td>
+      <td>-0.003134</td>
+      <td>0.450889</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Record of the Week: Slugga</td>
+      <td>\n\nRecord of the Week: Slugga\n\n\nPublished ...</td>
+      <td>-0.124157</td>
+      <td>0.619246</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Reissue of the Week: Blast</td>
+      <td>\n\nReissue of the Week: Blast\n\n\nPublished ...</td>
+      <td>-0.161497</td>
+      <td>0.509273</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Record of the Week: Aquarian Blood</td>
+      <td>\n\nRecord of the Week: Aquarian Blood\n\n\nPu...</td>
+      <td>-0.109696</td>
+      <td>0.585671</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Records of the Week: VATICAN DAGGER 7″ &amp; RIXE 7″</td>
+      <td>\n\nRecords of the Week: VATICAN DAGGER 7″ &amp; R...</td>
+      <td>-0.093889</td>
+      <td>0.595000</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Record of the Week: MÖRKHIMMEL Ostří Černé Kos...</td>
+      <td>\n\nRecord of the Week: MÖRKHIMMEL Ostří Černé...</td>
+      <td>-0.007875</td>
+      <td>0.677289</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>Records of the Week: MOIRA SCAR and LOW THREAT...</td>
+      <td>\n\nRecords of the Week: MOIRA SCAR and LOW TH...</td>
+      <td>-0.000278</td>
+      <td>0.517091</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>Record of the Week: NÜ-KLĒ-ER BLAST SUNTAN The...</td>
+      <td>\n\nRecord of the Week: NÜ-KLĒ-ER BLAST SUNTAN...</td>
+      <td>-0.171051</td>
+      <td>0.638190</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [134]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">34</span><span class="p">][</span><span class="s1">&#39;review&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[134]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&#39;\n\nRecord of the Week: Slugga\n\n\nPublished  June 17, 2015 By Greg\n\n\nCategories\n\nReviews \n\n\nSLUGGA – “Parasite/Shaved Heads”\nThis record rules. Stupid, short and direct. “Parasite” is so fucking catchy and punk and perfect. I think my only complaint is their singer sounds a little like Lumpy (of the DUMPERS), but that’s not a big complaint. All that aside, the fucking song is an instant classic and I won’t be surprised when it’s featured on Killed By Death #125 in 2053. “Shaved Heads” slows down just barely and it’s the perfect song for an idiotic creepy crawl through a stupid fucking basement show. Sloppy, but not too sloppy, punk…the kind of shit you wanna hear first thing in the morning before you spend the day punching fuckheads in the face. (Greg Harvester)\n(Total Punk)\n\xa0\n\n\n&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [135]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">polarity</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[135]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.11952482409853642
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [136]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">reviews</span><span class="o">.</span><span class="n">subjectivity</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[136]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>0.5093821719063856
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span> <span class="o">=</span> <span class="n">TextBlob</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">text</span><span class="o">.</span><span class="n">word_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[37]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>defaultdict(int,
+            {&#39;2007&#39;: 1,
+             &#39;2015&#39;: 1,
+             &#39;30&#39;: 1,
+             &#39;a&#39;: 13,
+             &#39;about&#39;: 1,
+             &#39;after&#39;: 1,
+             &#39;ambivalent&#39;: 1,
+             &#39;an&#39;: 1,
+             &#39;and&#39;: 7,
+             &#39;any&#39;: 1,
+             &#39;anything&#39;: 1,
+             &#39;are&#39;: 5,
+             &#39;as&#39;: 5,
+             &#39;assault&#39;: 1,
+             &#39;attempt&#39;: 1,
+             &#39;attentive&#39;: 1,
+             &#39;beat&#39;: 1,
+             &#39;because&#39;: 1,
+             &#39;before&#39;: 1,
+             &#39;being&#39;: 1,
+             &#39;best&#39;: 1,
+             &#39;brain&#39;: 1,
+             &#39;but&#39;: 1,
+             &#39;by&#39;: 2,
+             &#39;called&#39;: 1,
+             &#39;can&#39;: 1,
+             &#39;care&#39;: 1,
+             &#39;casts&#39;: 1,
+             &#39;categories&#39;: 1,
+             &#39;chaos&#39;: 1,
+             &#39;closing&#39;: 1,
+             &#39;commitment&#39;: 1,
+             &#39;comparably&#39;: 1,
+             &#39;compelling&#39;: 1,
+             &#39;conclusion&#39;: 1,
+             &#39;considering&#39;: 1,
+             &#39;context&#39;: 2,
+             &#39;continued&#39;: 1,
+             &#39;course&#39;: 1,
+             &#39;cynical&#39;: 1,
+             &#39;d-beat&#39;: 1,
+             &#39;damn&#39;: 1,
+             &#39;death&#39;: 1,
+             &#39;decade&#39;: 1,
+             &#39;despite&#39;: 1,
+             &#39;different&#39;: 1,
+             &#39;disbones&#39;: 1,
+             &#39;discharge-worship&#39;: 1,
+             &#39;disclose&#39;: 7,
+             &#39;disengagement&#39;: 1,
+             &#39;doggedly&#39;: 1,
+             &#39;enduring&#39;: 1,
+             &#39;energy&#39;: 1,
+             &#39;epilogue&#39;: 1,
+             &#39;era&#39;: 1,
+             &#39;es&#39;: 1,
+             &#39;especially&#39;: 1,
+             &#39;even&#39;: 1,
+             &#39;evident&#39;: 1,
+             &#39;experience&#39;: 1,
+             &#39;fairytale&#39;: 2,
+             &#39;far&#39;: 2,
+             &#39;final&#39;: 1,
+             &#39;foggy&#39;: 1,
+             &#39;for&#39;: 3,
+             &#39;forest&#39;: 2,
+             &#39;forever&#39;: 1,
+             &#39;forsaking&#39;: 1,
+             &#39;found&#39;: 1,
+             &#39;framtid&#39;: 1,
+             &#39;friend&#39;: 1,
+             &#39;from&#39;: 2,
+             &#39;fucking&#39;: 1,
+             &#39;fuzzed-out&#39;: 1,
+             &#39;going&#39;: 1,
+             &#39;grounded&#39;: 1,
+             &#39;guitar&#39;: 1,
+             &#39;here&#39;: 3,
+             &#39;him&#39;: 3,
+             &#39;his&#39;: 3,
+             &#39;human&#39;: 1,
+             &#39;hypnotic&#39;: 1,
+             &#39;i&#39;: 2,
+             &#39;ignore&#39;: 1,
+             &#39;ill-fated&#39;: 1,
+             &#39;immediately&#39;: 1,
+             &#39;in&#39;: 7,
+             &#39;increasingly&#39;: 1,
+             &#39;inertial&#39;: 1,
+             &#39;influence&#39;: 1,
+             &#39;insightful&#39;: 1,
+             &#39;irreducible&#39;: 1,
+             &#39;is&#39;: 8,
+             &#39;it&#39;: 3,
+             &#39;its&#39;: 2,
+             &#39;itself&#39;: 1,
+             &#39;just&#39;: 2,
+             &#39;kawakami&#39;: 6,
+             &#39;knew&#39;: 1,
+             &#39;la&#39;: 1,
+             &#39;later&#39;: 1,
+             &#39;legacy&#39;: 1,
+             &#39;legend&#39;: 1,
+             &#39;less&#39;: 1,
+             &#39;like&#39;: 1,
+             &#39;liner&#39;: 1,
+             &#39;listened&#39;: 1,
+             &#39;listeners&#39;: 1,
+             &#39;lives&#39;: 1,
+             &#39;logical&#39;: 1,
+             &#39;look&#39;: 1,
+             &#39;loose&#39;: 1,
+             &#39;lp&#39;: 2,
+             &#39;majority&#39;: 1,
+             &#39;metallic&#39;: 1,
+             &#39;might&#39;: 1,
+             &#39;mindful&#39;: 1,
+             &#39;missing&#39;: 1,
+             &#39;monumental&#39;: 1,
+             &#39;more&#39;: 4,
+             &#39;mother&#39;: 1,
+             &#39;mrr&#39;: 1,
+             &#39;much&#39;: 2,
+             &#39;mus&#39;: 1,
+             &#39;music&#39;: 1,
+             &#39;muster&#39;: 1,
+             &#39;mythos&#39;: 1,
+             &#39;nearly&#39;: 1,
+             &#39;neither&#39;: 1,
+             &#39;new&#39;: 1,
+             &#39;nightmare&#39;: 1,
+             &#39;noise&#39;: 1,
+             &#39;nor&#39;: 1,
+             &#39;not&#39;: 4,
+             &#39;notes&#39;: 2,
+             &#39;nuanced&#39;: 1,
+             &#39;of&#39;: 9,
+             &#39;on&#39;: 1,
+             &#39;opinion&#39;: 1,
+             &#39;opus&#39;: 1,
+             &#39;or&#39;: 1,
+             &#39;other&#39;: 1,
+             &#39;out&#39;: 1,
+             &#39;over&#39;: 1,
+             &#39;pall&#39;: 1,
+             &#39;palliative&#39;: 1,
+             &#39;particularly&#39;: 1,
+             &#39;passing&#39;: 1,
+             &#39;perceptions&#39;: 1,
+             &#39;perpetual&#39;: 1,
+             &#39;personal&#39;: 1,
+             &#39;pinnacle&#39;: 1,
+             &#39;place&#39;: 1,
+             &#39;point&#39;: 1,
+             &#39;potential&#39;: 1,
+             &#39;primarily&#39;: 1,
+             &#39;psychedelic&#39;: 1,
+             &#39;published&#39;: 1,
+             &#39;raw&#39;: 1,
+             &#39;read&#39;: 1,
+             &#39;record&#39;: 3,
+             &#39;reflective&#39;: 1,
+             &#39;reissue&#39;: 2,
+             &#39;released&#39;: 1,
+             &#39;relevant&#39;: 1,
+             &#39;remains&#39;: 1,
+             &#39;respect&#39;: 1,
+             &#39;reviews&#39;: 1,
+             &#39;riffs&#39;: 1,
+             &#39;rip&#39;: 1,
+             &#39;romantic&#39;: 1,
+             &#39;royalties&#39;: 1,
+             &#39;s&#39;: 8,
+             &#39;saw&#39;: 1,
+             &#39;schrader&#39;: 4,
+             &#39;seem&#39;: 1,
+             &#39;september&#39;: 1,
+             &#39;set&#39;: 1,
+             &#39;shit&#39;: 1,
+             &#39;showing&#39;: 1,
+             &#39;shown&#39;: 1,
+             &#39;simple&#39;: 1,
+             &#39;simplify&#39;: 1,
+             &#39;simply&#39;: 1,
+             &#39;simultaneously&#39;: 1,
+             &#39;single&#39;: 1,
+             &#39;so&#39;: 1,
+             &#39;solos&#39;: 1,
+             &#39;some&#39;: 2,
+             &#39;sonic&#39;: 1,
+             &#39;still&#39;: 1,
+             &#39;story&#39;: 1,
+             &#39;stuart&#39;: 1,
+             &#39;stupefying&#39;: 1,
+             &#39;style&#39;: 1,
+             &#39;swirling&#39;: 1,
+             &#39;t&#39;: 1,
+             &#39;ten-minute&#39;: 1,
+             &#39;than&#39;: 3,
+             &#39;that&#39;: 7,
+             &#39;the&#39;: 23,
+             &#39;these&#39;: 1,
+             &#39;this&#39;: 4,
+             &#39;those&#39;: 2,
+             &#39;time&#39;: 1,
+             &#39;to&#39;: 5,
+             &#39;tomorrow&#39;: 1,
+             &#39;tone&#39;: 1,
+             &#39;too&#39;: 1,
+             &#39;touching&#39;: 1,
+             &#39;tour&#39;: 1,
+             &#39;track&#39;: 1,
+             &#39;track-by-track&#39;: 1,
+             &#39;transcendent&#39;: 1,
+             &#39;trees&#39;: 3,
+             &#39;true&#39;: 1,
+             &#39;un&#39;: 1,
+             &#39;unrelenting&#39;: 1,
+             &#39;us&#39;: 1,
+             &#39;vast&#39;: 1,
+             &#39;verdict&#39;: 1,
+             &#39;vida&#39;: 1,
+             &#39;wardead&#39;: 1,
+             &#39;was&#39;: 1,
+             &#39;week&#39;: 1,
+             &#39;welcome&#39;: 1,
+             &#39;while&#39;: 1,
+             &#39;who&#39;: 1,
+             &#39;with&#39;: 4,
+             &#39;without&#39;: 2,
+             &#39;won&#39;: 1,
+             &#39;writes&#39;: 1,
+             &#39;yesterday&#39;: 2,
+             &#39;you&#39;: 2,
+             &#39;zoo&#39;: 1,
+             &#39;–&#39;: 1,
+             &#39;’&#39;: 9,
+             &#39;“&#39;: 4,
+             &#39;”&#39;: 4})
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [122]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">words</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[122]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>WordList([&#39;Reissue&#39;, &#39;of&#39;, &#39;the&#39;, &#39;Week&#39;, &#39;Disclose&#39;, &#39;Published&#39;, &#39;September&#39;, &#39;30&#39;, &#39;2015&#39;, &#39;By&#39;, &#39;MRR&#39;, &#39;Categories&#39;, &#39;Reviews&#39;, &#39;DISCLOSE&#39;, &#39;–&#39;, &#39;“&#39;, &#39;Yesterday&#39;, &#39;’&#39;, &#39;s&#39;, &#39;Fairytale&#39;, &#39;Tomorrow&#39;, &#39;’&#39;, &#39;s&#39;, &#39;Nightmare&#39;, &#39;”&#39;, &#39;LP&#39;, &#39;This&#39;, &#39;is&#39;, &#39;a&#39;, &#39;monumental&#39;, &#39;record&#39;, &#39;even&#39;, &#39;without&#39;, &#39;considering&#39;, &#39;its&#39;, &#39;place&#39;, &#39;as&#39;, &#39;the&#39;, &#39;final&#39;, &#39;DISCLOSE&#39;, &#39;LP&#39;, &#39;released&#39;, &#39;before&#39;, &#39;Kawakami&#39;, &#39;’&#39;, &#39;s&#39;, &#39;passing&#39;, &#39;in&#39;, &#39;2007&#39;, &#39;His&#39;, &#39;death&#39;, &#39;casts&#39;, &#39;an&#39;, &#39;enduring&#39;, &#39;pall&#39;, &#39;particularly&#39;, &#39;evident&#39;, &#39;here&#39;, &#39;in&#39;, &#39;the&#39;, &#39;new&#39;, &#39;liner&#39;, &#39;notes&#39;, &#39;from&#39;, &#39;Stuart&#39;, &#39;Schrader&#39;, &#39;While&#39;, &#39;Schrader&#39;, &#39;primarily&#39;, &#39;writes&#39;, &#39;about&#39;, &#39;the&#39;, &#39;ill-fated&#39;, &#39;DISCLOSE&#39;, &#39;FRAMTID&#39;, &#39;tour&#39;, &#39;it&#39;, &#39;is&#39;, &#39;a&#39;, &#39;far&#39;, &#39;more&#39;, &#39;insightful&#39;, &#39;nuanced&#39;, &#39;and&#39;, &#39;touching&#39;, &#39;read&#39;, &#39;than&#39;, &#39;that&#39;, &#39;might&#39;, &#39;seem&#39;, &#39;Neither&#39;, &#39;romantic&#39;, &#39;nor&#39;, &#39;cynical&#39;, &#39;the&#39;, &#39;tone&#39;, &#39;is&#39;, &#39;simply&#39;, &#39;reflective&#39;, &#39;and&#39;, &#39;personal&#39;, &#39;here&#39;, &#39;are&#39;, &#39;his&#39;, &#39;perceptions&#39;, &#39;of&#39;, &#39;Kawakami&#39;, &#39;’&#39;, &#39;s&#39;, &#39;experience&#39;, &#39;in&#39;, &#39;the&#39;, &#39;US&#39;, &#39;not&#39;, &#39;a&#39;, &#39;verdict&#39;, &#39;but&#39;, &#39;a&#39;, &#39;single&#39;, &#39;opinion&#39;, &#39;The&#39;, &#39;epilogue&#39;, &#39;of&#39;, &#39;the&#39;, &#39;story&#39;, &#39;over&#39;, &#39;a&#39;, &#39;decade&#39;, &#39;later&#39;, &#39;remains&#39;, &#39;ambivalent&#39;, &#39;Kawakami&#39;, &#39;despite&#39;, &#39;his&#39;, &#39;legacy&#39;, &#39;was&#39;, &#39;still&#39;, &#39;a&#39;, &#39;human&#39;, &#39;being&#39;, &#39;irreducible&#39;, &#39;to&#39;, &#39;the&#39;, &#39;mythos&#39;, &#39;that&#39;, &#39;lives&#39;, &#39;on&#39;, &#39;after&#39;, &#39;him&#39;, &#39;The&#39;, &#39;continued&#39;, &#39;care&#39;, &#39;and&#39;, &#39;commitment&#39;, &#39;shown&#39;, &#39;by&#39;, &#39;those&#39;, &#39;that&#39;, &#39;knew&#39;, &#39;him&#39;, &#39;and&#39;, &#39;called&#39;, &#39;him&#39;, &#39;“&#39;, &#39;friend&#39;, &#39;”&#39;, &#39;are&#39;, &#39;a&#39;, &#39;welcome&#39;, &#39;palliative&#39;, &#39;showing&#39;, &#39;a&#39;, &#39;more&#39;, &#39;grounded&#39;, &#39;context&#39;, &#39;to&#39;, &#39;the&#39;, &#39;DISCLOSE&#39;, &#39;legend&#39;, &#39;In&#39;, &#39;that&#39;, &#39;respect&#39;, &#39;the&#39;, &#39;royalties&#39;, &#39;from&#39;, &#39;this&#39;, &#39;reissue&#39;, &#39;are&#39;, &#39;going&#39;, &#39;to&#39;, &#39;Kawakami&#39;, &#39;’&#39;, &#39;s&#39;, &#39;mother&#39;, &#39;Of&#39;, &#39;course&#39;, &#39;for&#39;, &#39;the&#39;, &#39;vast&#39;, &#39;majority&#39;, &#39;of&#39;, &#39;listeners&#39;, &#39;as&#39;, &#39;Schrader&#39;, &#39;is&#39;, &#39;mindful&#39;, &#39;to&#39;, &#39;point&#39;, &#39;out&#39;, &#39;the&#39;, &#39;context&#39;, &#39;is&#39;, &#39;far&#39;, &#39;less&#39;, &#39;immediately&#39;, &#39;relevant&#39;, &#39;than&#39;, &#39;the&#39;, &#39;record&#39;, &#39;itself&#39;, &#39;For&#39;, &#39;those&#39;, &#39;who&#39;, &#39;ignore&#39;, &#39;or&#39;, &#39;simplify&#39;, &#39;DISCLOSE&#39;, &#39;as&#39;, &#39;just&#39;, &#39;some&#39;, &#39;DISCHARGE-worship&#39;, &#39;you&#39;, &#39;are&#39;, &#39;missing&#39;, &#39;the&#39;, &#39;forest&#39;, &#39;for&#39;, &#39;the&#39;, &#39;trees&#39;, &#39;because&#39;, &#39;these&#39;, &#39;trees&#39;, &#39;look&#39;, &#39;like&#39;, &#39;some&#39;, &#39;other&#39;, &#39;damn&#39;, &#39;trees&#39;, &#39;you&#39;, &#39;saw&#39;, &#39;in&#39;, &#39;a&#39;, &#39;different&#39;, &#39;fucking&#39;, &#39;forest&#39;, &#39;It&#39;, &#39;’&#39;, &#39;s&#39;, &#39;just&#39;, &#39;not&#39;, &#39;that&#39;, &#39;simple&#39;, &#39;and&#39;, &#39;especially&#39;, &#39;not&#39;, &#39;with&#39;, &#39;this&#39;, &#39;record&#39;, &#39;Schrader&#39;, &#39;’&#39;, &#39;s&#39;, &#39;track-by-track&#39;, &#39;notes&#39;, &#39;are&#39;, &#39;much&#39;, &#39;more&#39;, &#39;compelling&#39;, &#39;and&#39;, &#39;attentive&#39;, &#39;than&#39;, &#39;anything&#39;, &#39;I&#39;, &#39;can&#39;, &#39;comparably&#39;, &#39;muster&#39;, &#39;so&#39;, &#39;I&#39;, &#39;won&#39;, &#39;’&#39;, &#39;t&#39;, &#39;attempt&#39;, &#39;too&#39;, &#39;much&#39;, &#39;here&#39;, &#39;Yesterday&#39;, &#39;’&#39;, &#39;s&#39;, &#39;Fairytale&#39;, &#39;is&#39;, &#39;the&#39;, &#39;pinnacle&#39;, &#39;of&#39;, &#39;“&#39;, &#39;Disbones&#39;, &#39;”&#39;, &#39;era&#39;, &#39;DISCLOSE&#39;, &#39;fuzzed-out&#39;, &#39;D-beat&#39;, &#39;with&#39;, &#39;increasingly&#39;, &#39;more&#39;, &#39;metallic&#39;, &#39;influence&#39;, &#39;in&#39;, &#39;the&#39;, &#39;guitar&#39;, &#39;riffs&#39;, &#39;Without&#39;, &#39;forsaking&#39;, &#39;any&#39;, &#39;of&#39;, &#39;the&#39;, &#39;raw&#39;, &#39;energy&#39;, &#39;this&#39;, &#39;style&#39;, &#39;set&#39;, &#39;loose&#39;, &#39;the&#39;, &#39;true&#39;, &#39;hypnotic&#39;, &#39;potential&#39;, &#39;of&#39;, &#39;the&#39;, &#39;unrelenting&#39;, &#39;beat&#39;, &#39;that&#39;, &#39;found&#39;, &#39;its&#39;, &#39;logical&#39;, &#39;conclusion&#39;, &#39;in&#39;, &#39;the&#39;, &#39;closing&#39;, &#39;track&#39;, &#39;“&#39;, &#39;Wardead&#39;, &#39;”&#39;, &#39;a&#39;, &#39;nearly&#39;, &#39;ten-minute&#39;, &#39;opus&#39;, &#39;of&#39;, &#39;swirling&#39;, &#39;chaos&#39;, &#39;and&#39;, &#39;perpetual&#39;, &#39;solos&#39;, &#39;a&#39;, &#39;psychedelic&#39;, &#39;disengagement&#39;, &#39;with&#39;, &#39;time&#39;, &#39;a&#39;, &#39;sonic&#39;, &#39;inertial&#39;, &#39;assault&#39;, &#39;that&#39;, &#39;is&#39;, &#39;simultaneously&#39;, &#39;as&#39;, &#39;stupefying&#39;, &#39;as&#39;, &#39;it&#39;, &#39;is&#39;, &#39;doggedly&#39;, &#39;transcendent&#39;, &#39;Noise&#39;, &#39;not&#39;, &#39;music&#39;, &#39;Best&#39;, &#39;listened&#39;, &#39;to&#39;, &#39;with&#39;, &#39;a&#39;, &#39;foggy&#39;, &#39;brain&#39;, &#39;RIP&#39;, &#39;Kawakami&#39;, &#39;Kawakami&#39;, &#39;forever&#39;, &#39;Shit&#39;, &#39;Zoo&#39;, &#39;La&#39;, &#39;Vida&#39;, &#39;Es&#39;, &#39;Un&#39;, &#39;Mus&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">word_list</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[39]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>399
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[40]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>250
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[41]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>239
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [127]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[42]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_items([(&#39;reissue&#39;, 2), (&#39;of&#39;, 9), (&#39;the&#39;, 23), (&#39;week&#39;, 1), (&#39;disclose&#39;, 7), (&#39;published&#39;, 1), (&#39;september&#39;, 1), (&#39;30&#39;, 1), (&#39;2015&#39;, 1), (&#39;by&#39;, 2), (&#39;mrr&#39;, 1), (&#39;categories&#39;, 1), (&#39;reviews&#39;, 1), (&#39;–&#39;, 1), (&#39;“&#39;, 4), (&#39;yesterday&#39;, 2), (&#39;’&#39;, 9), (&#39;s&#39;, 8), (&#39;fairytale&#39;, 2), (&#39;tomorrow&#39;, 1), (&#39;nightmare&#39;, 1), (&#39;”&#39;, 4), (&#39;lp&#39;, 2), (&#39;this&#39;, 4), (&#39;is&#39;, 8), (&#39;a&#39;, 13), (&#39;monumental&#39;, 1), (&#39;record&#39;, 3), (&#39;even&#39;, 1), (&#39;without&#39;, 2), (&#39;considering&#39;, 1), (&#39;its&#39;, 2), (&#39;place&#39;, 1), (&#39;as&#39;, 5), (&#39;final&#39;, 1), (&#39;released&#39;, 1), (&#39;before&#39;, 1), (&#39;kawakami&#39;, 6), (&#39;passing&#39;, 1), (&#39;in&#39;, 7), (&#39;2007&#39;, 1), (&#39;his&#39;, 3), (&#39;death&#39;, 1), (&#39;casts&#39;, 1), (&#39;an&#39;, 1), (&#39;enduring&#39;, 1), (&#39;pall&#39;, 1), (&#39;particularly&#39;, 1), (&#39;evident&#39;, 1), (&#39;here&#39;, 3), (&#39;new&#39;, 1), (&#39;liner&#39;, 1), (&#39;notes&#39;, 2), (&#39;from&#39;, 2), (&#39;stuart&#39;, 1), (&#39;schrader&#39;, 4), (&#39;while&#39;, 1), (&#39;primarily&#39;, 1), (&#39;writes&#39;, 1), (&#39;about&#39;, 1), (&#39;ill-fated&#39;, 1), (&#39;framtid&#39;, 1), (&#39;tour&#39;, 1), (&#39;it&#39;, 3), (&#39;far&#39;, 2), (&#39;more&#39;, 4), (&#39;insightful&#39;, 1), (&#39;nuanced&#39;, 1), (&#39;and&#39;, 7), (&#39;touching&#39;, 1), (&#39;read&#39;, 1), (&#39;than&#39;, 3), (&#39;that&#39;, 7), (&#39;might&#39;, 1), (&#39;seem&#39;, 1), (&#39;neither&#39;, 1), (&#39;romantic&#39;, 1), (&#39;nor&#39;, 1), (&#39;cynical&#39;, 1), (&#39;tone&#39;, 1), (&#39;simply&#39;, 1), (&#39;reflective&#39;, 1), (&#39;personal&#39;, 1), (&#39;are&#39;, 5), (&#39;perceptions&#39;, 1), (&#39;experience&#39;, 1), (&#39;us&#39;, 1), (&#39;not&#39;, 4), (&#39;verdict&#39;, 1), (&#39;but&#39;, 1), (&#39;single&#39;, 1), (&#39;opinion&#39;, 1), (&#39;epilogue&#39;, 1), (&#39;story&#39;, 1), (&#39;over&#39;, 1), (&#39;decade&#39;, 1), (&#39;later&#39;, 1), (&#39;remains&#39;, 1), (&#39;ambivalent&#39;, 1), (&#39;despite&#39;, 1), (&#39;legacy&#39;, 1), (&#39;was&#39;, 1), (&#39;still&#39;, 1), (&#39;human&#39;, 1), (&#39;being&#39;, 1), (&#39;irreducible&#39;, 1), (&#39;to&#39;, 5), (&#39;mythos&#39;, 1), (&#39;lives&#39;, 1), (&#39;on&#39;, 1), (&#39;after&#39;, 1), (&#39;him&#39;, 3), (&#39;continued&#39;, 1), (&#39;care&#39;, 1), (&#39;commitment&#39;, 1), (&#39;shown&#39;, 1), (&#39;those&#39;, 2), (&#39;knew&#39;, 1), (&#39;called&#39;, 1), (&#39;friend&#39;, 1), (&#39;welcome&#39;, 1), (&#39;palliative&#39;, 1), (&#39;showing&#39;, 1), (&#39;grounded&#39;, 1), (&#39;context&#39;, 2), (&#39;legend&#39;, 1), (&#39;respect&#39;, 1), (&#39;royalties&#39;, 1), (&#39;going&#39;, 1), (&#39;mother&#39;, 1), (&#39;course&#39;, 1), (&#39;for&#39;, 3), (&#39;vast&#39;, 1), (&#39;majority&#39;, 1), (&#39;listeners&#39;, 1), (&#39;mindful&#39;, 1), (&#39;point&#39;, 1), (&#39;out&#39;, 1), (&#39;less&#39;, 1), (&#39;immediately&#39;, 1), (&#39;relevant&#39;, 1), (&#39;itself&#39;, 1), (&#39;who&#39;, 1), (&#39;ignore&#39;, 1), (&#39;or&#39;, 1), (&#39;simplify&#39;, 1), (&#39;just&#39;, 2), (&#39;some&#39;, 2), (&#39;discharge-worship&#39;, 1), (&#39;you&#39;, 2), (&#39;missing&#39;, 1), (&#39;forest&#39;, 2), (&#39;trees&#39;, 3), (&#39;because&#39;, 1), (&#39;these&#39;, 1), (&#39;look&#39;, 1), (&#39;like&#39;, 1), (&#39;other&#39;, 1), (&#39;damn&#39;, 1), (&#39;saw&#39;, 1), (&#39;different&#39;, 1), (&#39;fucking&#39;, 1), (&#39;simple&#39;, 1), (&#39;especially&#39;, 1), (&#39;with&#39;, 4), (&#39;track-by-track&#39;, 1), (&#39;much&#39;, 2), (&#39;compelling&#39;, 1), (&#39;attentive&#39;, 1), (&#39;anything&#39;, 1), (&#39;i&#39;, 2), (&#39;can&#39;, 1), (&#39;comparably&#39;, 1), (&#39;muster&#39;, 1), (&#39;so&#39;, 1), (&#39;won&#39;, 1), (&#39;t&#39;, 1), (&#39;attempt&#39;, 1), (&#39;too&#39;, 1), (&#39;pinnacle&#39;, 1), (&#39;disbones&#39;, 1), (&#39;era&#39;, 1), (&#39;fuzzed-out&#39;, 1), (&#39;d-beat&#39;, 1), (&#39;increasingly&#39;, 1), (&#39;metallic&#39;, 1), (&#39;influence&#39;, 1), (&#39;guitar&#39;, 1), (&#39;riffs&#39;, 1), (&#39;forsaking&#39;, 1), (&#39;any&#39;, 1), (&#39;raw&#39;, 1), (&#39;energy&#39;, 1), (&#39;style&#39;, 1), (&#39;set&#39;, 1), (&#39;loose&#39;, 1), (&#39;true&#39;, 1), (&#39;hypnotic&#39;, 1), (&#39;potential&#39;, 1), (&#39;unrelenting&#39;, 1), (&#39;beat&#39;, 1), (&#39;found&#39;, 1), (&#39;logical&#39;, 1), (&#39;conclusion&#39;, 1), (&#39;closing&#39;, 1), (&#39;track&#39;, 1), (&#39;wardead&#39;, 1), (&#39;nearly&#39;, 1), (&#39;ten-minute&#39;, 1), (&#39;opus&#39;, 1), (&#39;swirling&#39;, 1), (&#39;chaos&#39;, 1), (&#39;perpetual&#39;, 1), (&#39;solos&#39;, 1), (&#39;psychedelic&#39;, 1), (&#39;disengagement&#39;, 1), (&#39;time&#39;, 1), (&#39;sonic&#39;, 1), (&#39;inertial&#39;, 1), (&#39;assault&#39;, 1), (&#39;simultaneously&#39;, 1), (&#39;stupefying&#39;, 1), (&#39;doggedly&#39;, 1), (&#39;transcendent&#39;, 1), (&#39;noise&#39;, 1), (&#39;music&#39;, 1), (&#39;best&#39;, 1), (&#39;listened&#39;, 1), (&#39;foggy&#39;, 1), (&#39;brain&#39;, 1), (&#39;rip&#39;, 1), (&#39;forever&#39;, 1), (&#39;shit&#39;, 1), (&#39;zoo&#39;, 1), (&#39;la&#39;, 1), (&#39;vida&#39;, 1), (&#39;es&#39;, 1), (&#39;un&#39;, 1), (&#39;mus&#39;, 1)])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[43]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_keys([&#39;reissue&#39;, &#39;of&#39;, &#39;the&#39;, &#39;week&#39;, &#39;disclose&#39;, &#39;published&#39;, &#39;september&#39;, &#39;30&#39;, &#39;2015&#39;, &#39;by&#39;, &#39;mrr&#39;, &#39;categories&#39;, &#39;reviews&#39;, &#39;–&#39;, &#39;“&#39;, &#39;yesterday&#39;, &#39;’&#39;, &#39;s&#39;, &#39;fairytale&#39;, &#39;tomorrow&#39;, &#39;nightmare&#39;, &#39;”&#39;, &#39;lp&#39;, &#39;this&#39;, &#39;is&#39;, &#39;a&#39;, &#39;monumental&#39;, &#39;record&#39;, &#39;even&#39;, &#39;without&#39;, &#39;considering&#39;, &#39;its&#39;, &#39;place&#39;, &#39;as&#39;, &#39;final&#39;, &#39;released&#39;, &#39;before&#39;, &#39;kawakami&#39;, &#39;passing&#39;, &#39;in&#39;, &#39;2007&#39;, &#39;his&#39;, &#39;death&#39;, &#39;casts&#39;, &#39;an&#39;, &#39;enduring&#39;, &#39;pall&#39;, &#39;particularly&#39;, &#39;evident&#39;, &#39;here&#39;, &#39;new&#39;, &#39;liner&#39;, &#39;notes&#39;, &#39;from&#39;, &#39;stuart&#39;, &#39;schrader&#39;, &#39;while&#39;, &#39;primarily&#39;, &#39;writes&#39;, &#39;about&#39;, &#39;ill-fated&#39;, &#39;framtid&#39;, &#39;tour&#39;, &#39;it&#39;, &#39;far&#39;, &#39;more&#39;, &#39;insightful&#39;, &#39;nuanced&#39;, &#39;and&#39;, &#39;touching&#39;, &#39;read&#39;, &#39;than&#39;, &#39;that&#39;, &#39;might&#39;, &#39;seem&#39;, &#39;neither&#39;, &#39;romantic&#39;, &#39;nor&#39;, &#39;cynical&#39;, &#39;tone&#39;, &#39;simply&#39;, &#39;reflective&#39;, &#39;personal&#39;, &#39;are&#39;, &#39;perceptions&#39;, &#39;experience&#39;, &#39;us&#39;, &#39;not&#39;, &#39;verdict&#39;, &#39;but&#39;, &#39;single&#39;, &#39;opinion&#39;, &#39;epilogue&#39;, &#39;story&#39;, &#39;over&#39;, &#39;decade&#39;, &#39;later&#39;, &#39;remains&#39;, &#39;ambivalent&#39;, &#39;despite&#39;, &#39;legacy&#39;, &#39;was&#39;, &#39;still&#39;, &#39;human&#39;, &#39;being&#39;, &#39;irreducible&#39;, &#39;to&#39;, &#39;mythos&#39;, &#39;lives&#39;, &#39;on&#39;, &#39;after&#39;, &#39;him&#39;, &#39;continued&#39;, &#39;care&#39;, &#39;commitment&#39;, &#39;shown&#39;, &#39;those&#39;, &#39;knew&#39;, &#39;called&#39;, &#39;friend&#39;, &#39;welcome&#39;, &#39;palliative&#39;, &#39;showing&#39;, &#39;grounded&#39;, &#39;context&#39;, &#39;legend&#39;, &#39;respect&#39;, &#39;royalties&#39;, &#39;going&#39;, &#39;mother&#39;, &#39;course&#39;, &#39;for&#39;, &#39;vast&#39;, &#39;majority&#39;, &#39;listeners&#39;, &#39;mindful&#39;, &#39;point&#39;, &#39;out&#39;, &#39;less&#39;, &#39;immediately&#39;, &#39;relevant&#39;, &#39;itself&#39;, &#39;who&#39;, &#39;ignore&#39;, &#39;or&#39;, &#39;simplify&#39;, &#39;just&#39;, &#39;some&#39;, &#39;discharge-worship&#39;, &#39;you&#39;, &#39;missing&#39;, &#39;forest&#39;, &#39;trees&#39;, &#39;because&#39;, &#39;these&#39;, &#39;look&#39;, &#39;like&#39;, &#39;other&#39;, &#39;damn&#39;, &#39;saw&#39;, &#39;different&#39;, &#39;fucking&#39;, &#39;simple&#39;, &#39;especially&#39;, &#39;with&#39;, &#39;track-by-track&#39;, &#39;much&#39;, &#39;compelling&#39;, &#39;attentive&#39;, &#39;anything&#39;, &#39;i&#39;, &#39;can&#39;, &#39;comparably&#39;, &#39;muster&#39;, &#39;so&#39;, &#39;won&#39;, &#39;t&#39;, &#39;attempt&#39;, &#39;too&#39;, &#39;pinnacle&#39;, &#39;disbones&#39;, &#39;era&#39;, &#39;fuzzed-out&#39;, &#39;d-beat&#39;, &#39;increasingly&#39;, &#39;metallic&#39;, &#39;influence&#39;, &#39;guitar&#39;, &#39;riffs&#39;, &#39;forsaking&#39;, &#39;any&#39;, &#39;raw&#39;, &#39;energy&#39;, &#39;style&#39;, &#39;set&#39;, &#39;loose&#39;, &#39;true&#39;, &#39;hypnotic&#39;, &#39;potential&#39;, &#39;unrelenting&#39;, &#39;beat&#39;, &#39;found&#39;, &#39;logical&#39;, &#39;conclusion&#39;, &#39;closing&#39;, &#39;track&#39;, &#39;wardead&#39;, &#39;nearly&#39;, &#39;ten-minute&#39;, &#39;opus&#39;, &#39;swirling&#39;, &#39;chaos&#39;, &#39;perpetual&#39;, &#39;solos&#39;, &#39;psychedelic&#39;, &#39;disengagement&#39;, &#39;time&#39;, &#39;sonic&#39;, &#39;inertial&#39;, &#39;assault&#39;, &#39;simultaneously&#39;, &#39;stupefying&#39;, &#39;doggedly&#39;, &#39;transcendent&#39;, &#39;noise&#39;, &#39;music&#39;, &#39;best&#39;, &#39;listened&#39;, &#39;foggy&#39;, &#39;brain&#39;, &#39;rip&#39;, &#39;forever&#39;, &#39;shit&#39;, &#39;zoo&#39;, &#39;la&#39;, &#39;vida&#39;, &#39;es&#39;, &#39;un&#39;, &#39;mus&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[44]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>dict_values([2, 9, 23, 1, 7, 1, 1, 1, 1, 2, 1, 1, 1, 1, 4, 2, 9, 8, 2, 1, 1, 4, 2, 4, 8, 13, 1, 3, 1, 2, 1, 2, 1, 5, 1, 1, 1, 6, 1, 7, 1, 3, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 2, 2, 1, 4, 1, 1, 1, 1, 1, 1, 1, 3, 2, 4, 1, 1, 7, 1, 1, 3, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 1, 2, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[45]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;Container object of 239 artists&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_nlp_81_1.png" src="_images/intro_nlp_81_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;words&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="s1">&#39;counts&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">count</span> <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">word_counts</span><span class="o">.</span><span class="n">values</span><span class="p">()]})</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [133]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 239 entries, 0 to 238
+Data columns (total 2 columns):
+counts    239 non-null int64
+words     239 non-null object
+dtypes: int64(1), object(1)
+memory usage: 3.8+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[47]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>counts</th>
+      <th>words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>reissue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9</td>
+      <td>of</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23</td>
+      <td>the</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>week</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>disclose</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [135]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">counts</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">large</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">large</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">],</span> <span class="n">large</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[49]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;Container object of 10 artists&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/intro_nlp_87_1.png" src="_images/intro_nlp_87_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [138]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">CountVectorizer</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [139]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [140]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[140]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;150x8611 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+    with 29595 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [143]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[143]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;00&#39;, &#39;000&#39;, &#39;00s&#39;, &#39;01&#39;, &#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;064&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [168]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [169]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">reviews</span><span class="o">.</span><span class="n">review</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[169]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>&lt;150x300 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+    with 6665 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [170]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cvect</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[170]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;10&#39;, &#39;11&#39;, &#39;12&#39;, &#39;2012&#39;, &#39;2013&#39;, &#39;2014&#39;, &#39;2015&#39;, &#39;80s&#39;, &#39;90s&#39;, &#39;actually&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <p class="caption"><span class="caption-text">Section I</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-syllabus.html">LMTH 2075-A: Data and Design with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-introduction.html">Introduction to Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-homework02.html">Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Folium.html">Mapping Data with Folium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_scraping.html">Review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_scraping.html#Webscraping-Intro">Webscraping Intro</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Are Punks Negative?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Record-Reviews">Record Reviews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bandsintown.html">BandsinTown</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+            </form>
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="intro_scraping.html" title="Review"
+              >previous</a> |
+            <a href="bandsintown.html" title="BandsinTown"
+              >next</a> |
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/intro_nlp.ipynb.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Jacob F. Koehler, PhD.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
